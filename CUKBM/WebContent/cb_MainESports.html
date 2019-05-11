@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="EUC-KR">
+    <link rel="stylesheet" href="style.css">
+</head>
+<header id="header">
+    <h1><a href="cb_Main.html">CUKBM</a></h1>
+    <nav class="spot">
+        <ul>
+            <li><a href="/CUKBM/mypage">MY PAGE</a></li>
+            <li><a href="cb_Alarm.jsp" onclick="window.open(this.href, '_blank', 'width=40px,height=100px,toolbars=no,scrollbars=no'); return false;"><img id="bell" src="./resources/bell.jpg" ></a></li>
+            <li><a href="cb_Login.html">LOGIN</a></li>
+        </ul>
+    </nav>
+</header>
+<body>
+<div id="wrapper">
+    <div id="frame">
+        <div class="img-wrapper img1" onclick="location.href='/CUKBM/board?value=lol';">
+            <img src="./resources/1.jpg"/>
+            <div class="darkness"></div>
+            <div class="btn-plus"><span draggable="false">League<br/>Of<br/>Legend</span></div>
+        </div>
+
+        <div class="img-wrapper img2" onclick="location.href='/CUKBM/board?value=overwatch';">
+            <img src="./resources/2.jpg"/>
+            <div class="darkness"></div>
+            <div class="btn-plus"><span draggable="false">Overwatch</span></div>
+        </div>
+
+        <div class="img-wrapper img3" onclick="location.href='/CUKBM/board?value=bg';">
+            <img src="./resources/3.jpg"/>
+            <div class="darkness"></div>
+            <div class="btn-plus"><span draggable="false">Battle<br/>Ground</span></div>
+        </div>
+
+        <div class="img-wrapper img4" onclick="location.href='/CUKBM/board?value=e_etc';">
+            <img src="./resources/3.jpg"/>
+            <div class="darkness"></div>
+            <div class="btn-plus"><span draggable="false">기타</span></div>
+        </div>
+    </div>
+</div>
+</body>
+<footer>
+    <div>2019-05-02 객체지향패러다임 프로젝트</div>
+</footer>
+</html>
