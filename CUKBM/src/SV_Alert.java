@@ -6,19 +6,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class Login
+ * Servlet implementation class SV_Alert
  */
-@WebServlet("/SV_Login")
-public class SV_Login extends HttpServlet {
+@WebServlet("/SV_Alert")
+public class SV_Alert extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SV_Login() {
+    public SV_Alert() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,6 +27,16 @@ public class SV_Login extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String id = request.getParameter("id");
+		
+		if(id != null) {
+			//id 값이 전달 되었을 떄
+			//DB의 alert table에서 해당 아이디로 select 한 결과 출력하는 코드
+			
+		}
+		else {
+			log("SV_Alert**********전달된 param 없음");
+		}
 	}
 
 	/**
@@ -35,32 +44,7 @@ public class SV_Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String id = request.getParameter("id");
-		String pw = request.getParameter("pw");
-		
-		if(id!=null && pw!=null) {
-			//전송된 id, pw 가 null이 아닌 경우
-			Login login = new Login();
-			login.setID("id");
-			login.setPW("pw");
-			String result = login.getLoginResult();
-		
-			if(result.equals("success")) {
-				//로그인 성공 시 세션안에 id, login 값 추가
-				HttpSession session = request.getSession();
-				session.setAttribute("id", id);
-				session.setAttribute("login", true);
-				
-				//리다이렉트 위치 -> 이동하려던 페이지
-			}
-			else {
-				//로그인 실패 시 처리.. alert? or 화면에 글자로?
-			}
-		}
-		else {
-			log("**********전달된 id 또는 pw 가 null 입니다.");
-		}
-		
+		doGet(request, response);
 	}
 
 }

@@ -32,4 +32,20 @@
     <servlet-name>my-page</servlet-name>
     <url-pattern>/mypage</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>match</servlet-name>
+    <servlet-class>SV_Match</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>match</servlet-name>
+    <url-pattern>/match</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>alert</servlet-name>
+    <servlet-class>SV_Alert</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>alert</servlet-name>
+    <url-pattern>/alert</url-pattern>
+  </servlet-mapping>
 </web-app>
