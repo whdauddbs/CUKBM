@@ -9,7 +9,7 @@
 	<nav class="spot">
 		<ul>
 			<li><a href="cb_MyPage.jsp">MY PAGE</a></li>
-			<li><a href="cb_Alarm.jsp" onclick="window.open(this.href, '_blank', 'width=40px,height=100px,toolbars=no,scrollbars=no'); return false;">
+			<li><a href="cb_Alert.jsp" onclick="window.open(this.href, '_blank', 'width=40px,height=100px,toolbars=no,scrollbars=no'); return false;">
 <img id="bell" src="./resources/bell.jpg" ></a></li>
 			<li><a href="cb_Login.html">LOGIN</a></li>
 		</ul>
