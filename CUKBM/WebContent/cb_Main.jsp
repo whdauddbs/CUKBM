@@ -1,20 +1,13 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="EUC-KR">
     <link rel="stylesheet" href="style.css">
 </head>
-<header id="header">
-    <h1><a href="cb_Main.html">CUKBM</a></h1>
-    <nav class="spot">
-        <ul>
-            <li><a href="/CUKBM/mypage">MY PAGE</a></li>
-            <li><a href="cb_Alert.jsp" onclick="window.open(this.href, '_blank', 'width=40px,height=100px,toolbars=no,scrollbars=no'); return false;"><img id="bell" src="./resources/bell.jpg" ></a></li>
-            <li><a href="cb_Login.html">LOGIN</a></li>
-        </ul>
-    </nav>
-</header>
 <body>
+<jsp:include page="cb_MainBar.jsp"></jsp:include>
 <div id="wrapper2">
     <div id="frame2">
         <div class="img-wrapper2 sports" onclick="location.href='/CUKBM/main?value=sports'">
@@ -31,7 +24,5 @@
   </div>
 </div>
 </body>
-<footer>
-    <div >2019-05-02 객체지향패러다임 프로젝트</div>
-</footer>
+
 </html>

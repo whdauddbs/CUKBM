@@ -1,43 +1,34 @@
-<!DOCTYPE html>
 <%@page contentType="text/html; charset=UTF-8"%>
 <html>
 <head>
 	<link rel="stylesheet" href="style.css">
 </head>
-<header id="header">
-	<h1><a href="cb_Main.html">CUKBM</a></h1>
-	<nav class="spot">
-		<ul>
-			<li><a href="/CUKBM/mypage">MY PAGE</a></li>
-			<li><a href="cb_Alert.jsp" onclick="window.open(this.href, '_blank', 'width=40px,height=100px,toolbars=no,scrollbars=no'); return false;"><img id="bell" src="./resources/bell.jpg" ></a></li>
-			<li><a href="cb_Login.html">LOGIN</a></li>
-		</ul>
-	</nav>
-</header>
+
 <body>
+<jsp:include page="cb_MainBar.jsp"></jsp:include>
 <table id="tablestyle" width="500" height="300" align = "center">
 	<tr>
 		<td colspan = "2">회원 정보</td>
 	</tr>
 	<tr>
 		<td width="170">아이디</td>
-		<td>${id}</td>
-	</tr>
-	<tr>
-		<td width="170">이름</td>
-		<td>${name}</td>
+		<td></td>
 	</tr>
 	<tr>
 		<td>비밀번호</td>
-		<td>${pw}</td>
+		<td></td>
 	</tr>
 	<tr>
 		<td>카카오톡아이디</td>
-		<td>${kakao_id}</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>이메일</td>
+		<td></td>
 	</tr>
 	<tr>
 		<td>팀 이름</td>
-		<td>${team}</td>
+		<td></td>
 	</tr>
 	<tr>
 		<td>참여 중인 방</td>
