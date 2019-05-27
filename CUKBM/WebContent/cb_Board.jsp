@@ -26,6 +26,9 @@
 				<td width="73">번호</td>
 				<td width="379">제목</td>
 				<td width="73">작성자</td>
+				<td width="164">경기일</td>
+				<td width="73">모집인원</td>
+				<td width="73">현재인원</td>
 				<td width="164">작성일</td>
 				<td width="58">조회수</td>
 				<td width="7"></td>
