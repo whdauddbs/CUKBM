@@ -51,10 +51,17 @@ public class SV_Board extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+<<<<<<< HEAD
 	private Board readDB(String value, int page) throws ServletException {
         Connection conn = null;
         Statement stmt = null;
         Board board = new Board();
+=======
+	private Board readDB(int page) throws ServletException {
+		Board list = new Board();
+        Connection conn = null;
+        Statement stmt = null;
+>>>>>>> parent of 7394202... ê²Œì‹œíŒìƒì„±(í…ŒìŠ¤íŠ¸2)
         try {
         	
         	Class.forName("com.mysql.jdbc.Driver");
@@ -62,22 +69,32 @@ public class SV_Board extends HttpServlet {
             if (conn == null)
             	throw new Exception("µ¥ÀÌÅÍº£ÀÌ½º¿¡ ¿¬°áÇÒ ¼ö ¾ø½À´Ï´Ù.");
             stmt = conn.createStatement();
+<<<<<<< HEAD
             ResultSet rs = stmt.executeQuery("select * from match_info where event = " + value + " order by date desc;");
+=======
+            ResultSet rs = stmt.executeQuery("select * from match_info order by date desc;");
+>>>>>>> parent of 7394202... ê²Œì‹œíŒìƒì„±(í…ŒìŠ¤íŠ¸2)
             
             for (int cnt = 0; cnt < page*10; cnt++) { // 
                 if (!rs.next()) {
                 	break;
                 }
                 if(cnt>=(page-1)*10) {
+<<<<<<< HEAD
           		  	board.setTitle(cnt%10, rs.getString("m_name"));
           		  	board.setMatchDate(cnt%10, rs.getString("m_date"));
           		  	board.setMNumber(cnt%10, rs.getInt("m_number"));
           		  	board.setCurrentNumber(cnt%10, rs.getInt("c_number"));
           		  	board.setCurrentNumber(cnt%10, rs.getInt("is_set"));
+=======
+          		  	list.setTitle(cnt%10, rs.getString("m_name"));
+          		  	list.setWriter(cnt%10, rs.getString("id"));
+>>>>>>> parent of 7394202... ê²Œì‹œíŒìƒì„±(í…ŒìŠ¤íŠ¸2)
           	  	}
                  
             }
           
+<<<<<<< HEAD
 	     }
 	     catch (Exception e) {
 	           throw new ServletException(e);
@@ -96,4 +113,24 @@ public class SV_Board extends HttpServlet {
 	     }
 	     return board;
 	}
+=======
+     }
+     catch (Exception e) {
+           throw new ServletException(e);
+     }
+     finally {
+           try {
+                 stmt.close();
+           }
+          catch (Exception ignored) {
+           }
+           try {
+                 conn.close();
+           }
+          catch (Exception ignored) {
+           }
+     }
+     return list;
+}
+>>>>>>> parent of 7394202... ê²Œì‹œíŒìƒì„±(í…ŒìŠ¤íŠ¸2)
 }
