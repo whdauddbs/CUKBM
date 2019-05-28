@@ -13,19 +13,15 @@
 <body>
 	<jsp:include page="cb_MainBar.jsp"></jsp:include>
 		<div class="container">
-			<div class="outer-radio">
-				<form method="post" action="jsp/radio.jsp">
-				  <div class="radio">
-				    <input id="all" name="group" type="radio" checked>
-				    <label for="all" class="radio-label">¿¸√º ∫∏±‚</label>
-				    
-				    <input id="team" name="group" type="radio">
-				    <label  for="team" class="radio-label">∆¿</label>
-				    
-				    <input id="one" name="group" type="radio">
-				    <label  for="one" class="radio-label">∞≥¿Œ</label>
-				  </div>
-				 </form>
+			<div class="outer">
+				<div class="check">
+				 	<form method="post" action="">
+				 		<a href=""><b><input type=button value="∆¿" class="randombutton"></b></a>
+				 		<a href=""><b><input type=button value="∞≥¿Œ" class="randombutton"></b></a>
+				 		<a href=""><b><input type=button value="∑£¥˝" class="randombutton"></b></a>
+				 		<a href=""><b><input type=button value="πÊ ª˝º∫" class="randombutton"></b></a>
+				 	</form>
+				 </div>
 			</div>
 		</div>
 				
@@ -57,7 +53,7 @@
           </c:if>
 			    -->
 			    <TR>
-			        <TD width=300>≥Û±∏~~</TD>
+			    	<TD width=300><a id="sg-a" href="http://localhost:8080/CUKBM/cb_ShowGameroom.jsp">≥Û±∏~~</a></TD>
 			        <TD width=80>19/12/01</TD>
 			        <TD width=60>12</TD>
 			        <TD width=60>∞≥¿Œ</TD>
@@ -74,12 +70,6 @@
 			        <TD width=60>2</TD>
 			        <TD width=60>∆¿</TD>
 			    </TR>
-			</table>
-			<table width="100%" cellpadding="0" cellspacing="0">
-				<tr><td colspan="4" height="5"></td></tr>
-				<tr>
-					<td><a href="cb_CreateGameroom.jsp"><input type=button value="±€æ≤±‚"></a></td>
-				</tr>
 			</table>
 			</div>
 		</div>

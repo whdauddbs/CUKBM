@@ -13,25 +13,12 @@ header .spot{position: absolute; right:50px; top: 15px; }
 header .spot li{float: left; padding: 0 10px;}
 
 #bell {width: 20px; height: 20px;}
-<!-- 占쎌뒙占쎈룱獒뺢쒀�삕占쎌읇占쎈쐻占쎈윪�억옙 -->
+<!-- �뜝�럩�뮋�뜝�럥猷긺뜏類���占쎌굲�뜝�럩�쓦�뜝�럥�맶�뜝�럥�쑋占쎌뼲�삕 -->
 #thisform {font-size:12px; color:#999;}
 
 #thisform fieldset {border:1px solid #ccc; padding:10 20px; margin: 10px;}
 
 #thisform div {margin:5px;}
-
-#videobcg{
-	position: absolute;
-	top: 0px;
-	left : 0px;
-	min-width: 100%;
-	min-height: 100%;
-	width: auto;
-	height: auto;
-	z-index: -1000;
-	overflow: hidden;
-}
-
 
 <!--main -->
 #wrapper2 {
@@ -48,13 +35,13 @@ header .spot li{float: left; padding: 0 10px;}
     position:relative;
 }
 .img-wrapper2 {
-    width:533px;
+    width:100%;
     height:100%;
     position:absolute;
     cursor:pointer;
 }
 .img-wrapper2 img {
-    width:inherit;
+    width:50%;
     height:inherit;
 }
 .sports{top:0; left:0;}
@@ -63,7 +50,7 @@ header .spot li{float: left; padding: 0 10px;}
     position:absolute;
     top:0;
     left:0;
-    width:inherit;
+    width:50%;
     height:inherit;
     background:#000000;
     opacity:0;
@@ -72,7 +59,7 @@ header .spot li{float: left; padding: 0 10px;}
 .btn-plus2 {
     position:absolute;
     top:20%;
-    left:40%;
+    left:30%;
     text-align:center;
     opacity:0;
     transform:scale(2);
@@ -92,7 +79,7 @@ header .spot li{float: left; padding: 0 10px;}
     transform:scale(1);
 }
 
-<!-- 占쎈쐻占쎈윥獒뺤쉩�쐻占쎈윥塋딆�㏃땡�걹占쎌굲 4占쎈쨬占쎈즸占쎌굲 -->
+<!-- �뜝�럥�맶�뜝�럥�쑅�뜏類ㅼ돥占쎌맶�뜝�럥�쑅櫻뗫봿占썬룂�븸占쎄국�뜝�럩援� 4�뜝�럥夷у뜝�럥利멨뜝�럩援� -->
 #wrapper {
     width:100%;
     height:500px;
@@ -106,15 +93,16 @@ header .spot li{float: left; padding: 0 10px;}
     position:relative;
 }
 .img-wrapper {
-    width:50%;
+    width:100%;
     height:100%;
     position:absolute;
     cursor:pointer;
 }
 .img-wrapper img {
-    width:inherit;
+    width:25%;
     height:inherit;
 }
+
 .img1 {top:0; left:0;}
 .img2 {top:0; left:25%;}
 .img3 {top:0; left:50%;}
@@ -123,7 +111,7 @@ header .spot li{float: left; padding: 0 10px;}
     position:absolute;
     top:0;
     left:0;
-    width:inherit;
+    width:50%;
     height:inherit;
     background:#000000;
     opacity:0;
@@ -153,8 +141,6 @@ header .spot li{float: left; padding: 0 10px;}
     opacity:1;
     transform:scale(1);
 }
-
-
 
 <!--Board-->
 
@@ -196,16 +182,59 @@ header .spot li{float: left; padding: 0 10px;}
   width: 70%;
   height: 70%;
   margin: 40px auto;
-  background: #ffffff;
   
 }.outer {
   display: table;
   width: 100%;
   height: 100%;
-}
+  margin:auto;
+ }
 
-.radio{
+.check{
 	display:inline;
+	}
+.randombutton {
+  border: 1px solid #c0c0c0;
+  color: #004040;
+  background-color:#ffffff;
+  font-size:20px;
+  border-radius:5px;
+  margin:10px;
+  width: 20%;
+  height:50px; 
+}
+#sg-a:link{color:black;}
+#sg-a:visited{color:black; }
+#sg-a:hover{color:black;}
+#sg-a:active{color:black;}
+
+<!--ShowGameroom-->
+.sg-container {
+  width: 70%;
+  height: 70%;
+  margin: 40px auto;
+  
+}.sg-outer {
+  display: table;
+  width: 70%;
+  height: 70%;
+  margin:auto;
+  border:1px;
+ }
+.sg-top{
+	display: inline;
+}
+.sg-top span{
+	margin-right:10px;
+}
+#sg-title{
+	color:#004040
+}
+#sg-d{
+	font-size:x-small;
+	color:grey;
+	text-align:right;
+	float: right;
 }
 <!--Mypage-->
 #tablestyle {
