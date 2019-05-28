@@ -1,8 +1,4 @@
-import java.io.*;
-import java.sql.*;
 import java.util.ArrayList;
-
-import javax.servlet.ServletException;
 
 public class Board {
     private ArrayList<String> titleList = new ArrayList<String>();         // 제목
@@ -11,10 +7,10 @@ public class Board {
     private ArrayList<String> matchDateList = new ArrayList<String>();             // 경기일자
     private ArrayList<Integer> mNumberList = new ArrayList<Integer>();             // 모집인원
     private ArrayList<Integer> currentNumberList = new ArrayList<Integer>();           // 현재 인원
-    private ArrayList<Integer> isSetList = new ArrayList<Integer>();           // 현재 인원
-    private ArrayList<String> detailList = new ArrayList<String>();           // 현재 인원
-    private ArrayList<Integer> isTeamList = new ArrayList<Integer>();           // 현재 인원
-    private ArrayList<Integer> eventList = new ArrayList<Integer>();           // 현재 인원
+    private ArrayList<Integer> isSetList = new ArrayList<Integer>();           // 매치 확정 여부
+    private ArrayList<String> detailList = new ArrayList<String>();           // 상세 내용
+    private ArrayList<Integer> isTeamList = new ArrayList<Integer>();           // 팀/개인
+    private ArrayList<Integer> eventList = new ArrayList<Integer>();           // 종목
     
     
     public Board() {
@@ -80,45 +76,4 @@ public class Board {
     public Integer[] getEvent() {
         return eventList.toArray(new Integer[eventList.size()]);
     }
-    private void readDB(int page) throws ServletException {
-        Connection conn = null;
-        Statement stmt = null;
-        try {
-        	
-        	Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cukbm","root","1234");
-            if (conn == null)
-            	throw new Exception("데이터베이스에 연결할 수 없습니다.");
-            stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from match_info order by date desc;");
-            
-            for (int cnt = 0; cnt < page*10; cnt++) { // 
-                if (!rs.next()) {
-                	break;
-                }
-                if(cnt>=(page-1)*10) {
-          		  	setTitle(cnt%10, rs.getString("m_name"));
-          		  	setWriter(cnt%10, rs.getString("id"));
-          	  	}
-                 
-            }
-          
-     }
-     catch (Exception e) {
-           throw new ServletException(e);
-     }
-     finally {
-           try {
-                 stmt.close();
-           }
-          catch (Exception ignored) {
-           }
-           try {
-                 conn.close();
-           }
-          catch (Exception ignored) {
-           }
-     }
-     return list;
-}
 }
