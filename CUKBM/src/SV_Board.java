@@ -73,46 +73,5 @@ public class SV_Board extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
-	private Board readDB(int page) throws ServletException {
-		Board list = new Board();
-        Connection conn = null;
-        Statement stmt = null;
-        try {
-        	
-        	Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cukbm","root","1234");
-            if (conn == null)
-            	throw new Exception("데이터베이스에 연결할 수 없습니다.");
-            stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from match_info order by date desc;");
-            
-            for (int cnt = 0; cnt < page*10; cnt++) { // 
-                if (!rs.next()) {
-                	break;
-                }
-                if(cnt>=(page-1)*10) {
-          		  	list.setTitle(cnt%10, rs.getString("m_name"));
-          		  	list.setWriter(cnt%10, rs.getString("id"));
-          	  	}
-                 
-            }
-          
-     }
-     catch (Exception e) {
-           throw new ServletException(e);
-     }
-     finally {
-           try {
-                 stmt.close();
-           }
-          catch (Exception ignored) {
-           }
-           try {
-                 conn.close();
-           }
-          catch (Exception ignored) {
-           }
-     }
-     return list;
-}
+	
 }
