@@ -45,11 +45,11 @@ public class SV_Match extends HttpServlet {
 					//전달된 값을 확인하고 db에 입력
 					//db입력 후 error없다면 result:success받으면 게시판 화면 보여주기
 				case "join":
-					//방 참가 코드
+					//방 참가 코드, 알람 - 방장(참가시, 꽉찼을시)
 					response.sendRedirect("cb_ShowGameroom.jsp");
 					break;
 				case "set":
-					//매치 확정 코드
+					//매치 확정 코드 , 알람 - 모든 방이용자
 					break;
 				case "random":
 					//랜덤 참가 코드
