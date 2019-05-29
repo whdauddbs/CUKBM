@@ -32,7 +32,7 @@ public class SV_MyPage extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		
-		if(session.getAttribute("login")!=null && (boolean)session.getAttribute("login")==true) {
+		if(session.getAttribute("login")!=null) {
 			//로그인이 되어 있을 때
 			String id = (String) session.getAttribute("id");
 			
