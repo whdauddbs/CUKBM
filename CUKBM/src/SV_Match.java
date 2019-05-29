@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -87,9 +88,7 @@ public class SV_Match extends HttpServlet {
 	private void changeSet(String date) throws ServletException { // set 바꾸고, 알람 쿼리 전송
         Connection conn = null;
         Statement stmt = null;
-        SimpleDateFormat format1 = new SimpleDateFormat ( "yyyyMMdd_HHmmss");
-        Date time = new Date();
-        String time1 = format1.format(time);
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss_SSS", Locale.US).format(new Date());
 
         
         try {
@@ -110,7 +109,7 @@ public class SV_Match extends HttpServlet {
 		            	break;
 		            }
 		        	stmt.executeQuery(String.format("insert into alert(id, message, date, is_checked) values('%s', '%s', '%s', %s;",
-	                        rs.getString("id"), "매치가 확정되었습니다", time1, 0));
+	                        rs.getString("id"), "매치가 확정되었습니다", timeStamp, 0));
 		        }
 	        }
         }
