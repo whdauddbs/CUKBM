@@ -1,0 +1,39 @@
+mysqladmin -p root create cukbm
+
+create table match_info(
+	m_name	 varchar(100),
+	id 	 varchar(50),
+	m_date	 varchar(40),
+	date	 varchar(50),
+	m_number  int(4),
+	c_number  int(4),
+	is_set	 tinyint(1),
+	detail	 text,
+	team	 tinyint(1),
+	event	 varchar(50),
+	primary key(date)
+);
+
+create table p_match(
+	m_name	 varchar(100),
+	id	 varchar(50),
+	date	 varchar(50),
+	primary key(date)
+);
+
+create table alert(
+	id	 varchar(50),
+	message	 text,
+	date	 varchar(50),
+	is_checked tinyint(1),
+	primary key(date)
+);
+
+create table user_info(
+	name	 varchar(20),
+	id	 varchar(50),
+	pw	 varchar(50),
+	team	 varchar(50),
+	kakao_id	 varchar(30),
+	primary key(id)
+);

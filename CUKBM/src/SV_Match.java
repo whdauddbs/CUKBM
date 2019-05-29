@@ -3,10 +3,12 @@
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/SV_Match")
 public class SV_Match extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -34,22 +36,22 @@ public class SV_Match extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String value = request.getParameter("value");
-		
+		String date = null;
 		if(value == null) {
-			//Àü´ÞµÈ ¸Å°³º¯¼ö°¡ ¾ø´Â °æ¿ì
+			//ï¿½ï¿½ï¿½Þµï¿½ ï¿½Å°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			log("**************** null value");
 		}
 		else {
-			//valueÀÇ °ª¿¡ ÇØ´çÇÏ´Â view·Î ¿¬°á
+			//valueï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ï¿½Ï´ï¿½ viewï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 			switch (value) {
 				case "create_page" :
-					//¹æ ¸¸µå´Â È­¸éÀ¸·Î ³Ñ±â±â(±Û¾²±â È­¸é)
+					//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ±ï¿½ï¿½ï¿½(ï¿½Û¾ï¿½ï¿½ï¿½ È­ï¿½ï¿½)
 					response.sendRedirect("cb_CreateGameroom.jsp");
 					break;
 				case "create":
-					//¹æ »ý¼ºÈ­¸é¿¡¼­ »ý¼ºÇÏ±â(È®ÀÎ¹öÆ°) Å¬¸¯ÇßÀ» ¶§
-					//Àü´ÞµÈ °ªÀ» È®ÀÎÇÏ°í db¿¡ ÀÔ·Â
-					//dbÀÔ·Â ÈÄ error¾ø´Ù¸é result:success¹ÞÀ¸¸é °Ô½ÃÆÇ È­¸é º¸¿©ÁÖ±â
+					//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½È­ï¿½é¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï±ï¿½(È®ï¿½Î¹ï¿½Æ°) Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
+					//ï¿½ï¿½ï¿½Þµï¿½ ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ï°ï¿½ dbï¿½ï¿½ ï¿½Ô·ï¿½
+					//dbï¿½Ô·ï¿½ ï¿½ï¿½ errorï¿½ï¿½ï¿½Ù¸ï¿½ result:successï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ô½ï¿½ï¿½ï¿½ È­ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö±ï¿½
 					String m_name = request.getParameter("m_name");
 					String id = request.getParameter("id");
 					String m_date = request.getParameter("m_date");
@@ -59,11 +61,11 @@ public class SV_Match extends HttpServlet {
 					String detail = request.getParameter("detail");
 					String team = request.getParameter("team");
 					String event = request.getParameter("event");
-					
+
 					if(m_name!=null && id!=null && m_date!=null && m_number!=null && c_number!=null && is_set!=null
 							&& detail!=null && team!=null && event!=null) {
-						//¸Å°³º¯¼ö¸¦ ÀüºÎ ÀÔ·ÂµÇ¾úÀ» ¶§ ½ÇÇà
-						
+						//ï¿½Å°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ÂµÇ¾ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+
 						Connection conn=null;
 						PreparedStatement pstmt=null;
 						ResultSet rs=null;
@@ -71,11 +73,11 @@ public class SV_Match extends HttpServlet {
 							Class.forName("com.mysql.jdbc.Driver");
 							conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cukbm?serverTimezone=UTC", "root", "root123");
 							if(conn == null) {
-								throw new Exception("db¿¬°á ºÒ°¡");
+								throw new Exception("dbï¿½ï¿½ï¿½ï¿½ ï¿½Ò°ï¿½");
 							}
 							String sql = "INSERT INTO match_info (m_name, id, m_date, m_number, c_number, is_set, detail, team, event VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 							pstmt = conn.prepareStatement(sql);
-							//¿©±â¼­ ÀÔ·ÂÇÒ °ªµéÀ» ¼¼ÆÃ
+							//ï¿½ï¿½ï¿½â¼­ ï¿½Ô·ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 							pstmt.setString(1, "");//m_name
 							pstmt.setString(2, "");//id
 							pstmt.setString(3, "");//m_date
@@ -85,19 +87,19 @@ public class SV_Match extends HttpServlet {
 							pstmt.setString(7, "");//detail
 							pstmt.setString(8, "");//team
 							pstmt.setString(9, "");//event
-							
-							// insert ½ÇÇà°á°ú
+
+							// insert ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 							boolean result = pstmt.execute();
 							if(result==true) {
-								log("INSERT ¼º°ø");
-								//¼º°ø ½Ã ÇØ´ç °Ô½ÃÆÇÀ¸·Î ÀÌµ¿
+								log("INSERT ï¿½ï¿½ï¿½ï¿½");
+								//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ø´ï¿½ ï¿½Ô½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
 								response.sendRedirect("cb_Board.jsp?value="+event);
 							}
 							else {
-								log("INSERT ½ÇÆÐ");
-								throw new Exception("insert ½ÇÆÐ");
+								log("INSERT ï¿½ï¿½ï¿½ï¿½");
+								throw new Exception("insert ï¿½ï¿½ï¿½ï¿½");
 							}
-							
+
 						} catch (Exception e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -114,24 +116,32 @@ public class SV_Match extends HttpServlet {
 						}
 					}
 					else {
-						log("SV_Match_create******************ÀÔ·ÂµÇÁö ¾ÊÀº ¸Å°³º¯¼ö°¡ ÀÖÀ½.");
+						log("SV_Match_create******************ï¿½Ô·Âµï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Å°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½.");
 					}
-					
+
 				case "join":
-					//¹æ Âü°¡ ÄÚµå
-					response.sendRedirect("cb_ShowGameroom.jsp"); //todo ¾î´À ¹æÀÎÁö °ª Àü´Þ(date °ª Àü´ÞÇÏ¸é ÇØ´ç ¹æÀ¸·Î Á¢¼Ó °¡´É)
+					//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½, ï¿½Ë¶ï¿½ - ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½Ã¡ï¿½ï¿½ï¿½ï¿½)
+					response.sendRedirect("cb_ShowGameroom.jsp");
 					break;
 				case "set":
-					//¸ÅÄ¡ È®Á¤ ÄÚµå
+					date = request.getParameter("date");
+					changeSet(date);
 					break;
 				case "random":
-					//·£´ý Âü°¡ ÄÚµå
+					//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½
 					RandomMatch rm = new RandomMatch();
 					String result = rm.getRandomMatch();
 					if(result.equals("success")) {
-						response.sendRedirect("cb_ShowGameroom.jsp"); //todo ¾î´À ¹æÀÎÁö °ª Àü´Þ(date °ª Àü´ÞÇÏ¸é ÇØ´ç ¹æÀ¸·Î Á¢¼Ó °¡´É)
+						response.sendRedirect("cb_ShowGameroom.jsp"); //todo ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½(date ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½)
 					}
 					break;
+				case "show":
+					date = request.getParameter("date");
+					request.setAttribute("board", showRoom(date));
+					RequestDispatcher dispatch = request.getRequestDispatcher("cb_ShowGameroom.jsp");
+					dispatch.forward(request, response);
+					break;
+					// ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 				default:
 					break;
 			}
@@ -144,6 +154,97 @@ public class SV_Match extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+	}
+
+	private void changeSet(String date) throws ServletException { // set ï¿½Ù²Ù°ï¿½, ï¿½Ë¶ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        Connection conn = null;
+        Statement stmt = null;
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss_SSS", Locale.US).format(new Date());
+
+
+        try {
+	    	Class.forName("com.mysql.jdbc.Driver");
+	        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cukbm","root","1234");
+	        if (conn == null)
+	        	throw new Exception("ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
+	        stmt = conn.createStatement();
+	        stmt.executeQuery("update match_info set is_set=1 where date = " + date + ";");
+	        ResultSet rs = stmt.executeQuery("select * from match_info where date = " + date + ";");
+	        if (!rs.next()) {
+            }
+	        else {
+		        String m_name = rs.getString("m_name");
+		        rs = stmt.executeQuery("select * from p_match where m_name = " + m_name + ";");
+		        while(true) {
+		        	if (!rs.next()) {
+		            	break;
+		            }
+		        	stmt.executeQuery(String.format("insert into alert(id, message, date, is_checked) values('%s', '%s', '%s', %s;",
+	                        rs.getString("id"), "ï¿½ï¿½Ä¡ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ç¾ï¿½ï¿½ï¿½ï¿½Ï´ï¿½", timeStamp, 0));
+		        }
+	        }
+        }
+        catch (Exception e) {
+        	throw new ServletException(e);
+        }
+        finally {
+		    try {
+		    	stmt.close();
+		    }
+		    catch (Exception ignored) {
+		    }
+		    try {
+		        conn.close();
+		    }
+		    catch (Exception ignored) {
+		    }
+        }
+	return;
+	}
+
+	private Board showRoom(String date) throws ServletException { // set ï¿½Ù²Ù°ï¿½, ï¿½Ë¶ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+        Connection conn = null;
+        Statement stmt = null;
+        Board board = new Board();
+        try {
+	    	Class.forName("com.mysql.jdbc.Driver");
+	        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cukbm","root","1234");
+	        if (conn == null)
+	        	throw new Exception("ï¿½ï¿½ï¿½ï¿½ï¿½Íºï¿½ï¿½Ì½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
+	        stmt = conn.createStatement();
+	        ResultSet rs = stmt.executeQuery("select * from match_info where date = " + date + ";");
+	        if (!rs.next()) {
+            }
+	        else {
+	        	board.setTitle(0, rs.getString("m_name"));
+	        	board.setWriter(0, rs.getString("id"));
+	        	board.setMatchDate(0, rs.getString("m_date"));
+	        	board.setDate(0, rs.getString("date"));
+	        	board.setMNumber(0, rs.getInt("m_number"));
+	        	board.setCurrentNumber(0, rs.getInt("c_number"));
+	        	board.setIsSet(0,rs.getInt("is_set"));
+	        	board.setDetail(0, rs.getString("detail"));
+	        	board.setIsTeam(0, rs.getInt("team"));
+	        	board.setEvent(0, rs.getInt("event"));
+
+	        }
+        }
+        catch (Exception e) {
+        	throw new ServletException(e);
+        }
+        finally {
+		    try {
+		    	stmt.close();
+		    }
+		    catch (Exception ignored) {
+		    }
+		    try {
+		        conn.close();
+		    }
+		    catch (Exception ignored) {
+		    }
+        }
+	return board;
 	}
 
 }

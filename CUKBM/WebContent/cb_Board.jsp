@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"%>
-<!-- jstl  -->
+<%@taglib prefix="c" uri= "http://java.sun.com/jsp/jstl/core"%>
 
 
 <!DOCTYPE HTML>
@@ -37,21 +37,20 @@
 			        <th width=70><b>팀/개인</b></th>
 			    </TR>
 		    
-			    <!-- db불러와야함 
-			    <c:forEach var="cnt" begin="0" end="${BBS_LIST.listSize - 1}">
+			    
+			    <c:forEach var="cnt" begin="0" end="10">
                     <TR>
-                            <TD>${BBS_LIST.seqNo[cnt]}</TD>
-                            <TD>${BBS_LIST.title[cnt]}</TD>
-                            <TD>${BBS_LIST.writer[cnt]}</TD>
-                            <TD>${BBS_LIST.date[cnt]}</TD>
-                            <TD>${BBS_LIST.time[cnt]}</TD>
+                    		
+                            <TD><a href='/CUKBM/match?value=show&date=${board.getDate[cnt]}'>${board.getTitle[cnt]}</a></TD>
+                            <TD>${board.getMatchDate[cnt]}</TD>
+                            <TD>${board.getMNumber[cnt]}</TD>
+                            <TD>${board.getIsSet[cnt]}</TD>
                     </TR>
                 </c:forEach>
           </TABLE>
-          <c:if test="${!BBS_LIST.lastPage}">
-                 <A href='bbs-list?LAST_SEQ_NO=${BBS_LIST.seqNo[BBS_LIST.listSize - 1]}'>다음 페이지</A>
-          </c:if>
-			    -->
+          <c:forEach var="cnt" begin="0" end=${board.getDataCnt / 10}>
+          		<A href='/CUKBM/board?value=${value}&page=${cnt+1}'>${cnt+1}</A>
+          </c:forEach>
 			    <TR>
 			    	<TD width=300><a id="sg-a" href="http://localhost:8080/CUKBM/cb_ShowGameroom.jsp">농구~~</a></TD>
 			        <TD width=80>19/12/01</TD>
