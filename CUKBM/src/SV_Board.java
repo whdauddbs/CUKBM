@@ -18,7 +18,7 @@ public class SV_Board extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SV_Board() {
+    public SV_Board() { 
         super();
     }
 
@@ -39,7 +39,7 @@ public class SV_Board extends HttpServlet {
 			log("*** null value");
 		}
 		else {
-			dispatcher = request.getRequestDispatcher("cb_Board.jsp");
+			dispatcher = request.getRequestDispatcher("/cb_Board.jsp");
 			dispatcher.forward(request, response);
 		}
 	}
@@ -58,11 +58,11 @@ public class SV_Board extends HttpServlet {
         
         try {
 	    	Class.forName("com.mysql.jdbc.Driver");
-	        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cukbm","root","1234");
+	        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cukbm?serverTimezone=UTC","root","root123");
 	        if (conn == null)
 	        	throw new Exception("데이터베이스에 연결할 수 없습니다.");
 	        stmt = conn.createStatement();
-	        ResultSet rs = stmt.executeQuery("select * from match_info where event = " + value + " order by date desc;");
+	        ResultSet rs = stmt.executeQuery("select * from match_info where event = '" + value + "' order by date desc;");
 	        for (int cnt = 0; cnt < page*10; cnt++) { // 
 	            if (!rs.next()) {
 	            	break;

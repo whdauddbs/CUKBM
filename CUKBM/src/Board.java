@@ -14,7 +14,7 @@ public class Board {
     private ArrayList<Integer> isSetList = new ArrayList<Integer>();           // 매치 확정 여부
     private ArrayList<String> detailList = new ArrayList<String>();           // 상세 내용
     private ArrayList<Integer> isTeamList = new ArrayList<Integer>();           // 팀/개인
-    private ArrayList<Integer> eventList = new ArrayList<Integer>();           // 종목
+    private ArrayList<String> eventList = new ArrayList<String>();           // 종목
     private int dataCnt = 0;
     
     
@@ -47,7 +47,7 @@ public class Board {
     public void setIsTeam(int index, Integer isTeam) {
         this.isTeamList.add(index, isTeam);
    }
-    public void setEvent(int index, Integer event) {
+    public void setEvent(int index, String event) {
         this.eventList.add(index, event);
    }
     public void setDataCnt(int num) {
@@ -61,7 +61,7 @@ public class Board {
     public String[] getWriter() {
          return writerList.toArray(new String[writerList.size()]);
     }
-    public String[] getDate() {
+    public String[] getDate() { 
         return dateList.toArray(new String[dateList.size()]);
     }
     public String[] getMatchDate() {
@@ -82,8 +82,8 @@ public class Board {
     public Integer[] getIsTeam() {
         return isTeamList.toArray(new Integer[isTeamList.size()]);
     }
-    public Integer[] getEvent() {
-        return eventList.toArray(new Integer[eventList.size()]);
+    public String[] getEvent() {
+        return eventList.toArray(new String[eventList.size()]);
     }
     public int getDataCnt() {
         return dataCnt;

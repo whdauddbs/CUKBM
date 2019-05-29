@@ -50,7 +50,7 @@ public class SV_Alert extends HttpServlet {
 			
 			try {
 				Class.forName("com.mysql.jdbc.driver");
-				conn = DriverManager.getConnection("jdbc:mysql://locahost:3306/cukbm?serverTimezone", "root", "root123");
+				conn = DriverManager.getConnection("jdbc:mysql://locahost:3306/cukbm?serverTimezone=UTC", "root", "root123");
 				if(conn == null) {
 					throw new Exception("데이터베이스 연결 실패");
 				}
