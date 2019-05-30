@@ -237,9 +237,18 @@ header .spot li{float: left; padding: 0 10px;}
 	float: right;
 }
 
-#last{background : #efefef; width : 300px;}
+#last{background : #efefef; width : 300px; height : 50px;}
 #title{height : 50px; text-align:center; font-weight: bold; font-size : 1.2em; background : linear-gradient(to bottom,white,#eeeeee);}
 #captionstyle {text-align:left; border-bottom : 1px solid #efefef;}
 #tablestyle {width : 90%; height : 70%; border-bottom : 1px solid #efefef;}
 #tablestyle td {border-bottom : 1px solid #efefef;}
 #tablestyle th {font-weight: 440; height : 40px; border-bottom : 1px solid #efefef;}
+#inputbox01 {border : none; background : transparent; width : 100%; height : 100%;}
+#button01 {border: 1px solid #c0c0c0;
+  color: #004040;
+  background-color:#ffffff;
+  font-size:20px;
+  border-radius:5px;
+  margin:10px;
+  width: 20%;
+  height:50px;}
