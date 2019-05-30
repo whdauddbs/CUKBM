@@ -8,7 +8,6 @@
 <body>
 <jsp:include page="cb_MainBar.jsp"></jsp:include>
 <br>
-수정해야돼!
 <table id="tablestyle" align = "center" cellspacing="0">
 	<tr>
 		<td colspan = "2" height="10"></td>
@@ -41,9 +40,9 @@
 		<td></td>
 	</tr>
 	<tr>
-		<td id="last" colspan = "2"><BR><BR><BR></td>
+		<td id="last" colspan="2"> </td>
 	</tr>
 </table>
-버튼 만들기...		
+<center><input type="button" id="button01" value="join" onclick="location.href=''"></center>
 </body>
 </html>
