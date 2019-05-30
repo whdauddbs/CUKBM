@@ -28,11 +28,12 @@
 		<td><input type="text" name="m_number" id="inputbox01"></td>
 	</tr>
 	<tr>
-		<th colspan = "2" style="text-align:left;">
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="radio" name="team" checked="checked" value="팀" />팀&nbsp;&nbsp;
+		<th>팀/개인</th>
+		<td>
+		<input type="radio" name="team" checked="checked" value="팀" />팀
 		<input type="radio" name="team" checked="checked" value="개인" />개인
-		</th>
+		</td>
+		
 	</tr>
 	<tr>
 		<th>종목</th>

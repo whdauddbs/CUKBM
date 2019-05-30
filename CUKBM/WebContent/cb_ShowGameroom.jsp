@@ -43,6 +43,6 @@
 		<td id="last" colspan="2"> </td>
 	</tr>
 </table>
-<center><input type="button" id="button01" value="join" onclick="location.href=''"></center>
+<center><input type="button" id="button01" value="참가" onclick="location.href=''"></center>
 </body>
 </html>

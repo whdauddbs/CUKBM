@@ -8,7 +8,7 @@
 <jsp:include page="cb_MainBar.jsp"></jsp:include>
 <br>
 <table id="tablestyle" align = "center" cellspacing="0">
-	<caption id="captionstyle">회원정보</caption>
+	<caption id="captionstyle"><b>회원정보</b></caption>
 	<tr>
 		<td colspan = "5" height="10"></td>
 	</tr>
