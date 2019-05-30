@@ -7,36 +7,43 @@
 </head>
 <body>
 <jsp:include page="cb_MainBar.jsp"></jsp:include>
-	<h2>매치 정보</h2>
-	<div class="sg-container">
-  		<div class="sg-outer">
-  			<h3 id="sg-title"> ${board.getTitle[0] }</h3>
-  			<span class="sg-top">
-  				<span> ${board.getWriter[0] }</span>
-  				<span>  
-  					<c:if test="${board.getIsTeam[0]==0}">
-  						개인 모집
-  					</c:if>
-  					<c:if test="${board.getIsTeam[0]==1}">
-  						팀 모집
-  					</c:if>
-  				</span>
-  				<span> 
-  					<c:if test="${board.getIsSet[0]==1}">
-  						게임 확정
-  					</c:if>
-  				</span>
-  				<span id="sg-d"> ${board.getDate[0]}</span>
-  			</span>
-  			<hr>
-		  	<ul>
-		      <li> · 경기날짜: ${board.getMatchDate[0]}</li>
-		      <li> · 현재 인원: ${board.getCurrentNumber[0]}</li>
-		      <li> · 모집 인원: ${board.getMNumber[0]}</li>
-		    </ul>
-		    <hr>
-		    <p>${board.getDetail[0]}</p>
-		</div>
-	</div>			
+<br>
+수정해야돼!
+<table id="tablestyle" align = "center" cellspacing="0">
+	<tr>
+		<td colspan = "2" height="10"></td>
+	</tr>
+	<tr>
+		<td id="title" colspan = "2">방 정보</td>
+	</tr>
+	<tr>
+		<th width=17%>방 제목</th>
+		<td></td>
+	</tr>
+	<tr>
+		<th>경기 날짜</th>
+		<td></td>
+	</tr>
+	<tr>
+		<th>모집 인원</th>
+		<td></td>
+	</tr>
+	<tr>
+		<th>팀/개인</th>
+		<td></td>
+	</tr>
+	<tr>
+		<th>종목</th>
+		<td></td>
+	</tr>
+	<tr>
+		<th>상세 정보</th>
+		<td></td>
+	</tr>
+	<tr>
+		<td id="last" colspan = "2"><BR><BR><BR></td>
+	</tr>
+</table>
+버튼 만들기...		
 </body>
 </html>

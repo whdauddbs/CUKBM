@@ -11,25 +11,25 @@
 <div id="wrapper">
     <div id="frame">
         <div class="img-wrapper img1" onclick="location.href='/CUKBM/board?value=basketball&page=1'">
-            <img src="./resources/1.jpg"/>
+            <img src="./resources/sports01.png"/>
             <div class="darkness"></div>
             <div class="btn-plus"><span draggable="false">≥Û±∏</span></div>
         </div>
 
         <div class="img-wrapper img2" onclick="location.href='/CUKBM/board?value=soccer&page=1';">
-            <img src="./resources/2.jpg"/>
+            <img src="./resources/sports02.png"/>
             <div class="darkness"></div>
             <div class="btn-plus"><span draggable="false">√‡±∏</span></div>
         </div>
 
         <div class="img-wrapper img3" onclick="location.href='/CUKBM/board?value=pingpong&page=1';">
-            <img src="./resources/3.jpg"/>
+            <img src="./resources/sports03.png"/>
             <div class="darkness"></div>
             <div class="btn-plus"><span draggable="false">≈π±∏</span></div>
         </div>
 
         <div class="img-wrapper img4" onclick="location.href='/CUKBM/board?value=etc&page=1';">
-            <img src="./resources/3.jpg"/>
+            <img src="./resources/sports04.png"/>
             <div class="darkness"></div>
             <div class="btn-plus"><span draggable="false">±‚≈∏</span></div>
         </div>
