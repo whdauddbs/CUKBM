@@ -31,7 +31,7 @@ public class ShowMatch {
 		Connection conn = null;
 	    Statement stmt = null;
 	    ResultSet rs = null;
-	    try {
+	    try { 
 	    	Class.forName("com.mysql.jdbc.Driver");
 	        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cukbm?serverTimezone=UTC","root","root123");
 	        if (conn == null)

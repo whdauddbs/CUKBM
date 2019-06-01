@@ -17,6 +17,14 @@
     <url-pattern>/login</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>logout</servlet-name>
+    <servlet-class>SV_Logout</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>logout</servlet-name>
+    <url-pattern>/logout</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>board</servlet-name>
     <servlet-class>SV_Board</servlet-class>
   </servlet>

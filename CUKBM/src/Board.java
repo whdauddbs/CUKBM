@@ -113,7 +113,6 @@ public class Board {
 	        
 	        rs = pstmt.executeQuery();
 	        
-	        int i=0;
 	        while (rs.next()) {
             	m_name.add(rs.getString("m_name"));
       		  	m_date.add(rs.getString("m_date"));

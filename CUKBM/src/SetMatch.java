@@ -28,6 +28,7 @@ public class SetMatch {
 	        stmt.executeQuery("update match_info set is_set=1 where date = " + date + ";");
 	        rs = stmt.executeQuery("select * from match_info where date = " + date + ";");
 	        if (!rs.next()) {
+	        	throw new Exception("SetMatch.java : 검색된 값이 없음");
             }
 	        else {
 		        String m_name = rs.getString("m_name");
@@ -39,6 +40,7 @@ public class SetMatch {
 		        	stmt.executeQuery(String.format("insert into alert(id, message, date, is_checked) values('%s', '%s', '%s', %s;",
 	                        rs.getString("id"), "매치가 확정되었습니다.", timeStamp, 0));
 		        }
+		        rs.close();
 	        }
         }
         catch (Exception e) {
