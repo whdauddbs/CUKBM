@@ -11,7 +11,7 @@
         <ul>
             <li><a href="./mypage">MY PAGE</a></li>
             <li><a href="./alert" onclick="window.open(this.href, '_blank', 'width=40px,height=100px,toolbars=no,scrollbars=no'); return false;"><img id="bell" src="./resources/bell.jpg" ></a></li>
-            <li><a href="./login">LOGIN</a></li>
+            <li><a href="cb_Login.jsp">LOGIN</a></li>
         </ul>
     </nav>
 </header>

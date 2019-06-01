@@ -61,7 +61,7 @@ public class SV_MyPage extends HttpServlet {
 		}
 		else {
 			//로그인 안 된 상태일 때
-			RequestDispatcher rd = request.getRequestDispatcher("cb_Login.html");
+			RequestDispatcher rd = request.getRequestDispatcher("cb_Login.jsp");
             rd.forward(request, response);
 			
             //둘의 차이..?
