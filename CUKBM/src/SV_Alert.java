@@ -108,14 +108,9 @@ public class SV_Alert extends HttpServlet {
 			}
 			finally 
 			{	
-				try {
-					if(conn!=null) conn.close();
-					if(pstmt!=null) pstmt.close();
-					if(rs!=null) rs.close();
-				}
-				catch(Exception e){
-					e.printStackTrace();
-				}
+				if ( rs != null ) try{rs.close();}catch(Exception e){}
+	            if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
+	            if ( conn != null ) try{conn.close();}catch(Exception e){}
 			}
 		}
 		else {

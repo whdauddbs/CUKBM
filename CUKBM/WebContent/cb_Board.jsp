@@ -36,26 +36,24 @@
 			        <th width=70><b>모집 인원</b></th>
 			        <th width=70><b>팀/개인</b></th>
 			    </TR>
-		    
-			    
-			    <c:forEach var="cnt" begin="0" end="10">
+			    <c:forEach var="cnt" begin="${(pageNum-1)*10}" end="${pageNum*10}">
+			    ${date[cnt]}
                     <TR>
-                    		
-                            <TD><a href='/CUKBM/match?value=show&date=${board.date[cnt]}'>${board.getTitle[cnt]}</a></TD>
-                            <TD>${board.matchDate[cnt]}</TD>
-                            <TD>${board.mNumber[cnt]}</TD>
-                            <TD>${board.isSet[cnt]}</TD>
+	                    <TD><a href="/CUKBM/match?value=show&date=${date[cnt]}">${m_name[cnt]}</a></TD>
+	                    <TD>${m_date[cnt]}</TD>
+	                    <TD>${m_number[cnt]}</TD>
+	                    <TD>${is_set[cnt]}</TD>
                     </TR>
                 </c:forEach>
           </TABLE>
-          <c:if test="${board.dataCnt%10 == 0} ">
-          	<c:forEach var="cnt" begin="0" end=${board.dataCnt% 10} >
+          <c:if test="${pageNum%10 == 0}">
+          	<c:forEach var="cnt" begin="0" end="${pageNum% 10}" >
           		<A href='/CUKBM/board?value=${value}&page=${cnt+1}'>${cnt+1}</A>
           </c:forEach>
           </c:if>
-          <c:if test=${ board.dataCnt%10 != 0}>
-          	<c:forEach var="cnt" begin="0" end=${board.dataCnt % 10 + 1}>
-          		<A href='/CUKBM/board?value=${value}&page=${cnt+1}'>${cnt+1}</A>
+          <c:if test="${pageNum%10 != 0}">
+          	<c:forEach var="cnt" begin="0" end="${pageNum % 10 + 1}">
+          		<A href='/CUKBM/board?value=${event}&page=${cnt+1}'>${cnt+1}</A>
           </c:forEach>
           </c:if>
           
