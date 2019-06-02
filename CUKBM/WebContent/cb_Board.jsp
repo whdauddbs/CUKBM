@@ -16,48 +16,47 @@
 			<div class="outer">
 				<div class="check">
 				 	<form method="post" action="">
-				 		<a href=""><b><input type=button value="ÆÀ" class="randombutton"></b></a>
-				 		<a href=""><b><input type=button value="°³ÀÎ" class="randombutton"></b></a>
-				 		<a href=""><b><input type=button value="·£´ý" class="randombutton"></b></a>
-				 		<a href=""><b><input type=button value="¹æ »ý¼º" class="randombutton"></b></a>
+				 		<a href=""><b><input type=button value="ï¿½ï¿½" class="randombutton"></b></a>
+				 		<a href=""><b><input type=button value="ï¿½ï¿½ï¿½ï¿½" class="randombutton"></b></a>
+				 		<a href=""><b><input type=button value="ï¿½ï¿½ï¿½ï¿½" class="randombutton"></b></a>
+				 		<a href=""><b><input type=button value="ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½" class="randombutton"></b></a>
 				 	</form>
 				 </div>
 			</div>
 		</div>
-				
+
 	<div class="container">
   		<div class="outer">
 		    <div class="table-wrapper">
 			<table class="fl-table">
-		    
+
 			    <TR>
-			        <th width=300><b>Á¦¸ñ</b></th>
-			        <th width=80><b>°æ±â ³¯Â¥</b></th>
-			        <th width=70><b>¸ðÁý ÀÎ¿ø</b></th>
-			        <th width=70><b>ÆÀ/°³ÀÎ</b></th>
+			        <th width=300><b>ï¿½ï¿½ï¿½ï¿½</b></th>
+			        <th width=80><b>ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Â¥</b></th>
+			        <th width=70><b>ï¿½ï¿½ï¿½ï¿½ ï¿½Î¿ï¿½</b></th>
+			        <th width=70><b>ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½</b></th>
 			    </TR>
-		    
-			    
-			    <c:forEach var="cnt" begin="0" end="10">
-                    <TR>             		
-                            <TD><a href='/CUKBM/match?value=show&date=${board.date[cnt]}'>${board.getTitle[cnt]}</a></TD>
-                            <TD>${board.matchDate[cnt]}</TD>
-                            <TD>${board.mNumber[cnt]}</TD>
-                            <TD>${board.isSet[cnt]}</TD>
+			    <c:forEach var="cnt" begin="${(pageNum-1)*10}" end="${pageNum*10}">
+			    ${date[cnt]}
+                    <TR>
+	                    <TD><a href="/CUKBM/match?value=show&date=${date[cnt]}">${m_name[cnt]}</a></TD>
+	                    <TD>${m_date[cnt]}</TD>
+	                    <TD>${m_number[cnt]}</TD>
+	                    <TD>${is_set[cnt]}</TD>
                     </TR>
                 </c:forEach>
           </TABLE>
-          <c:if test="${board.dataCnt%10 == 0} ">
-          	<c:forEach var="cnt" begin="0" end='${board.dataCnt% 10}'>
+          <c:if test="${pageNum%10 == 0}">
+          	<c:forEach var="cnt" begin="0" end="${pageNum% 10}" >
           		<A href='/CUKBM/board?value=${value}&page=${cnt+1}'>${cnt+1}</A>
           </c:forEach>
           </c:if>
-          <c:if test='${ board.dataCnt%10 != 0}'>
-          	<c:forEach var="cnt" begin="0" end='${board.dataCnt % 10 + 1}'>
-          		<A href='/CUKBM/board?value=${value}&page=${cnt+1}'>${cnt+1}</A>
+          <c:if test="${pageNum%10 != 0}">
+          	<c:forEach var="cnt" begin="0" end="${pageNum % 10 + 1}">
+          		<A href='/CUKBM/board?value=${event}&page=${cnt+1}'>${cnt+1}</A>
           </c:forEach>
           </c:if>
-          
+
 			</div>
 		</div>
 	</div>
