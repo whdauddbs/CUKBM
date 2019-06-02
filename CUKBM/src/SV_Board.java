@@ -48,6 +48,8 @@ public class SV_Board extends HttpServlet {
 		Integer[] c_number = new Integer[10]; // 현재 인원
 		Integer[] is_set = new Integer[10]; // 매치 확정 여부
 		String[] detail = new String[10]; // 상세 내용
+		
+		
 		Integer[] team = new Integer[10]; // 팀/개인
 //		String[] event = new String[10]; // 종목
 		
