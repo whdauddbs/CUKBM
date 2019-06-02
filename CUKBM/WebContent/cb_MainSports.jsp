@@ -13,25 +13,25 @@
         <div class="img-wrapper img1" onclick="location.href='/CUKBM/board?event=basketball&page=1'">
             <img src="./resources/1.jpg"/>
             <div class="darkness"></div>
-            <div class="btn-plus"><span draggable="false">ï¿½ï¿½ï¿½ï¿½</span></div>
+            <div class="btn-plus"><span draggable="false">³ó±¸</span></div>
         </div>
 
         <div class="img-wrapper img2" onclick="location.href='/CUKBM/board?event=soccer&page=1';">
             <img src="./resources/2.jpg"/>
             <div class="darkness"></div>
-            <div class="btn-plus"><span draggable="false">ï¿½à±¸</span></div>
+            <div class="btn-plus"><span draggable="false">Ãà±¸</span></div>
         </div>
 
         <div class="img-wrapper img3" onclick="location.href='/CUKBM/board?event=pingpong&page=1';">
             <img src="./resources/3.jpg"/>
             <div class="darkness"></div>
-            <div class="btn-plus"><span draggable="false">Å¹ï¿½ï¿½</span></div>
+            <div class="btn-plus"><span draggable="false">Å¹±¸</span></div>
         </div>
 
         <div class="img-wrapper img4" onclick="location.href='/CUKBM/board?event=etc&page=1';">
             <img src="./resources/3.jpg"/>
             <div class="darkness"></div>
-            <div class="btn-plus"><span draggable="false">ï¿½ï¿½Å¸</span></div>
+            <div class="btn-plus"><span draggable="false">±âÅ¸</span></div>
         </div>
     </div>
 </div>

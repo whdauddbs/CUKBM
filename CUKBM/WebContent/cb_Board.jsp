@@ -16,10 +16,10 @@
 			<div class="outer">
 				<div class="check">
 				 	<form method="post" action="">
-				 		<a href=""><b><input type=button value="ï¿½ï¿½" class="randombutton"></b></a>
-				 		<a href=""><b><input type=button value="ï¿½ï¿½ï¿½ï¿½" class="randombutton"></b></a>
-				 		<a href=""><b><input type=button value="ï¿½ï¿½ï¿½ï¿½" class="randombutton"></b></a>
-				 		<a href=""><b><input type=button value="ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½" class="randombutton"></b></a>
+				 		<a href=""><b><input type=button value="ÆÀ" class="randombutton"></b></a>
+				 		<a href=""><b><input type=button value="°³ÀÎ" class="randombutton"></b></a>
+				 		<a href=""><b><input type=button value="·£´ý" class="randombutton"></b></a>
+				 		<a href=""><b><input type=button value="¹æ »ý¼º" class="randombutton"></b></a>
 				 	</form>
 				 </div>
 			</div>
@@ -31,10 +31,10 @@
 			<table class="fl-table">
 
 			    <TR>
-			        <th width=300><b>ï¿½ï¿½ï¿½ï¿½</b></th>
-			        <th width=80><b>ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Â¥</b></th>
-			        <th width=70><b>ï¿½ï¿½ï¿½ï¿½ ï¿½Î¿ï¿½</b></th>
-			        <th width=70><b>ï¿½ï¿½/ï¿½ï¿½ï¿½ï¿½</b></th>
+			        <th width=300><b>Á¦¸ñ</b></th>
+			        <th width=80><b>°æ±â ³¯Â¥</b></th>
+			        <th width=70><b>¸ðÁý ÀÎ¿ø</b></th>
+			        <th width=70><b>ÆÀ/°³ÀÎ</b></th>
 			    </TR>
 			    <c:forEach var="cnt" begin="${(pageNum-1)*10}" end="${pageNum*10}">
 			    ${date[cnt]}
