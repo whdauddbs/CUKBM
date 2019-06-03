@@ -1,9 +1,6 @@
-/SV_Logout.class
-/SetMatch.class
-/ShowMatch.class
-/Alert.class
-/CreateMatch.class
-/JoinMatch.class
+/Login.class
+/MyPage.class
+/SV_Alert.class
+/SV_Login.class
+/SV_MyPage.class
 /SV_LoginPage.class
-/LoginPage.class
-/SV_Board.class
