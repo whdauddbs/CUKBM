@@ -5,8 +5,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import javax.servlet.*;
 import java.io.*;
-import java.sql.*;
-import java.util.ArrayList;
 
 
 /**
