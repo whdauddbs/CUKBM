@@ -59,19 +59,19 @@ public class MyPage {
 		}
         finally {
         	try {
-				rs.close();
+				if(rs!=null) rs.close();
 			} 
 			catch (Exception e) {
 				e.printStackTrace();
 			}
 			try {
-				stmt.close();
+				if(stmt!=null) stmt.close();
 			} 
 			catch (Exception e) {
 				e.printStackTrace();
 			}
 			try {
-				conn.close();
+				if(conn!=null) conn.close();
 			} 
 			catch (Exception e) {
 				e.printStackTrace();
@@ -106,24 +106,9 @@ public class MyPage {
 			e.printStackTrace();
 		}
 		finally {
-			try {
-				rs.close();
-			} 
-			catch (Exception e) {
-				e.printStackTrace();
-			}
-			try {
-				stmt.close();
-			} 
-			catch (Exception e) {
-				e.printStackTrace();
-			}
-			try {
-				conn.close();
-			} 
-			catch (Exception e) {
-				e.printStackTrace();
-			}
+			if ( rs != null ) try{rs.close();}catch(Exception e){}
+            if ( stmt != null ) try{stmt.close();}catch(Exception e){}
+            if ( conn != null ) try{conn.close();}catch(Exception e){}
 		}
 	}
 }
