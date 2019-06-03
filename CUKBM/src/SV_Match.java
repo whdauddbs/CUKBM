@@ -73,16 +73,27 @@ public class SV_Match extends HttpServlet {
 					break;
 				case "join":
 					//방 참가 코드, 알람 - 방장(참가시, 꽉찼을시)
+					//해당 match_info 현재 참가중인 인원 + 1
+					//p_match에 참가한 사람 정보 추가
+					
+					//필요한 매개변수 : id, date
+					JoinMatch jm = new JoinMatch();
+					String id = request.getParameter("id");
+					jm.setId(id);
+					jm.setDate(date);
+					jm.InsertPMatch(); //p_match 테이블에 insert
+					jm.UpdateMatchInfo();//match_info 테이블의 현재인원수 + 1
 					response.sendRedirect("cb_ShowGameroom.jsp");
 					break;
 				case "set":
+					//매치 확정
 					date = request.getParameter("date");
 					SetMatch setMatch = new SetMatch();
 					setMatch.changeSet(date);
 					
 					break;
 				case "random":{
-					//랜덤 참가 코드
+					//랜덤 입장 코드
 					RandomMatch rm = new RandomMatch();
 					result = rm.getRandomMatch();
 					if(result.equals("success")) {
