@@ -9,6 +9,14 @@
     <url-pattern>/main</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>login-page</servlet-name>
+    <servlet-class>SV_LoginPage</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>login-page</servlet-name>
+    <url-pattern>/login_page</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>login</servlet-name>
     <servlet-class>SV_Login</servlet-class>
   </servlet>
