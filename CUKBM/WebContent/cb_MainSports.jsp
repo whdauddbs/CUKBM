@@ -21,7 +21,7 @@
 		</div>
          <div class="img-wrapper img4" onclick="location.href='/CUKBM/board?value=etc&page=1';">
             <img src="./resources/sports04.png" onmouseover="this.src='./resources/sportsD04.png'" onmouseout="this.src='./resources/sports04.png'">
-        </div>
+         </div>
     </div>
 </div>
 </body>
