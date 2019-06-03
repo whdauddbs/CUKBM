@@ -15,12 +15,6 @@ header .spot li{float: left; padding: 0 10px;}
 #bell {width: 20px; height: 20px;}
 #isLogin{color:white;}
 
-<!-- 占쎈쐻占쎈윪占쎈츐占쎈쐻占쎈윥�뙴湲븍쐪筌먲옙占쏙옙�뜝�럩援뀐옙�쐻占쎈윪占쎌벀占쎈쐻占쎈윥占쎈㎍占쎈쐻占쎈윥占쎌몝�뜝�럩堉뀐옙�굲 -->
-#thisform {font-size:12px; color:#999;}
-
-#thisform fieldset {border:1px solid #ccc; padding:10 20px; margin: 10px;}
-
-#thisform div {margin:5px;}
 
 <!--main -->
 
@@ -153,9 +147,36 @@ header .spot li{float: left; padding: 0 10px;}
     opacity:1;
     transform:scale(1);
 }
+<!--login-->
+#bg{
+	width:100%;
+	height:100%;
+}
+.container_bg {
+	background-color:#408080;
+ 	margin:20px auto;
+    padding:100px;
+    width:300px;
+    vertical-align:middle;
+}
+#c{
+	background-color: white;
+	margin:10px auto;
+	padding:10px;
+}
+#in{
+	color:black;
+	border: 0;
+	outline: none;
+	width:100%;
+}
+#mar{
+
+	width:100px;
+	float:left;
+}
 
 <!--Board-->
-
 .table-wrapper{
 	padding:20px;
     margin: 50px 70px 70px;
@@ -194,7 +215,7 @@ header .spot li{float: left; padding: 0 10px;}
   width: 70%;
   height: 70%;
   margin: 40px auto;
-  
+
 }.outer {
   display: table;
   width: 100%;
@@ -206,14 +227,14 @@ header .spot li{float: left; padding: 0 10px;}
 	display:inline;
 	}
 .randombutton {
-  border: 1px solid #c0c0c0;
+  border: 1px solid #ffffff;
   color: #004040;
   background-color:#ffffff;
   font-size:20px;
   border-radius:5px;
   margin:10px;
   width: 20%;
-  height:50px; 
+  height:100%; 
 }
 #sg-a:link{color:black;}
 #sg-a:visited{color:black; }

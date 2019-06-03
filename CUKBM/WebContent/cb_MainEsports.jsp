@@ -11,29 +11,21 @@
 <jsp:include page="cb_MainBar.jsp"></jsp:include>
 <div id="wrapper">
     <div id="frame">
-        <div class="img-wrapper img1" onclick="location.href='/CUKBM/board?value=lol&page=1';">
-            <img src="./resources/1.jpg"/>
-            <div class="darkness"></div>
-            <div class="btn-plus"><span draggable="false">League<br/>Of<br/>Legend</span></div>
-        </div>
+        <div class="img-wrapper img1" onclick="location.href='/CUKBM/board?value=lol&page=1'">
+            <img src="./resources/LOL.png" onmouseover="this.src='./resources/LOL D.png'" onmouseout="this.src='./resources/LOL.png'">
+         </div>
 
-        <div class="img-wrapper img2" onclick="location.href='/CUKBM/board?value=overwatch&page=1';">
-            <img src="./resources/2.jpg"/>
-            <div class="darkness"></div>
-            <div class="btn-plus"><span draggable="false">Overwatch</span></div>
-        </div>
+        <div class="img-wrapper img2" onclick="location.href='/CUKBM/board?value=overewatch&page=1'">
+            <img src="./resources/OVER.png" onmouseover="this.src='./resources/OVER D.png'" onmouseout="this.src='./resources/OVER.png'">
+         </div>
 
-        <div class="img-wrapper img3" onclick="location.href='/CUKBM/board?value=bg&page=1';">
-            <img src="./resources/3.jpg"/>
-            <div class="darkness"></div>
-            <div class="btn-plus"><span draggable="false">Battle<br/>Ground</span></div>
-        </div>
+        <div class="img-wrapper img3" onclick="location.href='/CUKBM/board?value=bg&page=1'">
+            <img src="./resources/BAG.PNG" onmouseover="this.src='./resources/BAG D.png'" onmouseout="this.src='./resources/BAG.PNG'">
+         </div>
 
-        <div class="img-wrapper img4" onclick="location.href='/CUKBM/board?value=e_etc&page=1';">
-            <img src="./resources/3.jpg"/>
-            <div class="darkness"></div>
-            <div class="btn-plus"><span draggable="false">±‚≈∏</span></div>
-        </div>
+        <div class="img-wrapper img4" onclick="location.href='/CUKBM/board?value=e_etc&page=1'">
+            <img src="./resources/Others.PNG" onmouseover="this.src='./resources/OTHER D.png'" onmouseout="this.src='./resources/Others.PNG'">
+         </div>
     </div>
 </div>
 </body>
