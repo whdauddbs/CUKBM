@@ -285,3 +285,7 @@ header .spot li{float: left; padding: 0 10px;}
   margin:10px;
   width: 20%;
   height:50px;}
+#login_style{
+	margin-left:auto; margin-right:auto; display:block;
+}
+#fieldset_style{border:none;}

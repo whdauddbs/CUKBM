@@ -1,6 +1,6 @@
-<!DOCTYPE html>
 <%@page contentType="text/html; charset=UTF-8"%>
 <html>
+
 <head><title>회원 정보</title>
 <link type="text/css" rel="stylesheet" href="style.css">
 </head>
