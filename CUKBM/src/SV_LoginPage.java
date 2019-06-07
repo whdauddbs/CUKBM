@@ -1,6 +1,8 @@
 
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,7 +30,15 @@ public class SV_LoginPage extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//로그인 페이지로 이동
-		response.sendRedirect("cb_Login.jsp");
+		String path = request.getParameter("path");
+		String date = request.getParameter("date");
+		System.out.println("SV_LoginPage : " + path);
+		if(path == null) {
+			response.sendRedirect("cb_Login.jsp");
+		}
+		else {
+			response.sendRedirect("cb_Login.jsp?path=" + path + "&date=" + date);
+		}
 	}
 
 	/**

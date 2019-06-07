@@ -12,7 +12,8 @@
 <body>
 <jsp:include page="cb_MainBar.jsp"></jsp:include>
 <br><br>
-<form action="/CUKBM/login" method="post">
+<% System.out.println("cb_login : " + request.getAttribute("path")); %>
+<form action="/CUKBM/login?path=${param.path}&date=${param.date}" method="post">
     <fieldset id="fieldset_style">
         <img id="login_style" src="./resources/CUKBMlogo.PNG"></img><br>
 		<input id="login_style" type="text" id="in" name="id" tabindex="1" accesskey="9" value="Player name" onfocus="this.value='';" /><br>

@@ -89,6 +89,7 @@ public class SV_Board extends HttpServlet {
 //				페이지 지정
 				request.setAttribute("pageNum", pageNum);
 				request.setAttribute("board_cnt", board_cnt);
+				request.setAttribute("path", "/CUKBM/board?event="+event+"&pageNum="+pageNum);
 				
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/cb_Board.jsp");
 				dispatcher.forward(request, response);

@@ -40,7 +40,7 @@ public class ShowMatch {
 	        	throw new Exception("데이터베이스에 연결할 수 없습니다.");
 	        stmt = conn.createStatement();
 	        rs = stmt.executeQuery("select * from match_info where date = '" + date + "';");
-	      
+	        System.out.println("showmath11 : " + date);
 	        if (!rs.next()) {
 	        	System.out.println("ShowMatch : 검색결과 없음");
 	        	return "fail";

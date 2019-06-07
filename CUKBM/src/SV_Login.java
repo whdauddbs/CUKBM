@@ -37,8 +37,9 @@ public class SV_Login extends HttpServlet {
 		// TODO Auto-generated method stub
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
-		String path = request.getParameter("path"); //이 서블릿을 요청한 페이지에서 path 값으로 원래 페이지의 path를 넘겨줘야됨.
-	
+		String path = request.getParameter("path");
+		String date = request.getParameter("date");//이 서블릿을 요청한 페이지에서 path 값으로 원래 페이지의 path를 넘겨줘야됨.
+		System.out.println("login : " + path +" "+ date);
 		if(id!=null && pw!=null) {
 			//전송된 id, pw 가 null이 아닌 경우
 			Login login = new Login();
@@ -50,9 +51,12 @@ public class SV_Login extends HttpServlet {
 				//로그인 성공 시 세션안에 id, login 값 추가
 				HttpSession session = request.getSession();
 				session.setAttribute("id", id);
-				
-				response.sendRedirect("cb_Main.jsp");
+				if(path == null)
+					response.sendRedirect("cb_Main.jsp");
 				//리다이렉트 위치 -> 이동하려던 페이지
+				else
+					System.out.println(path+"&date=" + date);
+					response.sendRedirect(path+"&date=" + date);
 			}
 			else {
 				//로그인 실패 시 처리.. alert? or 화면에 글자로?

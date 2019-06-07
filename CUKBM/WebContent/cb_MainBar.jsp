@@ -2,7 +2,6 @@
     pageEncoding="EUC-KR"%>
 <%@page import="java.io.*"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<% System.out.println(session.getAttribute("id")); %>
 <!DOCTYPE html>
 <html>
 <head>

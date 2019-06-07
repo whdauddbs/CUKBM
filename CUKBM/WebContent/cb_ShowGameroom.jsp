@@ -50,8 +50,12 @@
    </tr>
 </table>
 <!--  여기 수정해야됨 참가된 방은 클릭안되게끔 -->
+<% System.out.println("ShowGame : " + session.getAttribute("id")); %>
+<% String path = "./match?" + request.getQueryString();	
+	System.out.println("ShowGame22 : " +path);
+	%>
 <c:if test="${empty sessionScope.id }">
-		<center><input type="button" id="button01" value="참가" onclick="location.href='./login_page'"></center>
+		<center><input type="button" id="button01" value="참가" onclick="location.href='./login_page?path=<%=path%>&date=${date}'"></center>
 </c:if>
 <c:if test="${not empty sessionScope.id }">
 	<c:if test="${is_joined == null}">
