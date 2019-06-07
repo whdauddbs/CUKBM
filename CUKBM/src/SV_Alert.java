@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class SV_Alert
@@ -37,29 +38,24 @@ public class SV_Alert extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String id = request.getParameter("id");
+		HttpSession session = request.getSession();
+		String id = (String) session.getAttribute("id");
 		Alert alert = new Alert();
-		// 최대 알림 개수 정하면 바꿀 부분
-		/*
-		String[] msg = new String[10]; // 확인X 메세지
-		String[] date = new String[10];  
-		String[] c_msg = new String[10]; // 확인O 메세지
-		String[] c_date = new String[10];
-		*/
 		String result = alert.getAlert(id);
+		int msg_cnt = alert.getMsgCnt();
+		int c_msg_cnt = alert.getC_msgCnt();
+		String[] msg = new String[msg_cnt]; // 확인X 메세지
+		String[] c_msg = new String[c_msg_cnt]; // 확인O 메세지
 		if(result.equals("success")){
-				/*
 				 msg = alert.getMsg(); 
-				 date = alert.getDate();
 				 c_msg = alert.getC_msg();
-				 c_date = alert.getC_date();
-				 */
 				//확인하지 않은 알림
-				request.setAttribute("message", alert.getMsg()); 
-				request.setAttribute("date", alert.getDate());
+				request.setAttribute("message", msg); 
+				request.setAttribute("msg_cnt", msg_cnt);
 				//확인한 알림
-				request.setAttribute("c_message", alert.getC_msg());
-				request.setAttribute("c_date", alert.getC_date());
+				request.setAttribute("c_message", c_msg);
+				request.setAttribute("c_msg_cnt", c_msg_cnt);
+				
 				
 				RequestDispatcher rd = request.getRequestDispatcher("cb_Alert.jsp");
 				rd.forward(request, response);

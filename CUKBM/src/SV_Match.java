@@ -39,38 +39,56 @@ public class SV_Match extends HttpServlet {
 		String date = null;
 		String result = null;
 		
+		System.out.println("SV_Match.java value : "+value);
+		
 		if(value == null) {
 			//전달된 매개변수가 없는 경우
-			log("****************event : null value");
+			log("SV_match.java :****************value : null value");
 		}
 		else { 
 			//event의 값에 해당하는 view로 연결
 			switch (value) {
-				case "create_page" :
+				case "create_page" :{
 					//방 만드는 화면으로 넘기기(글쓰기 화면)
 					response.sendRedirect("cb_CreateGameroom.jsp");
 					break;
-				case "create":
-					try {
-						CreateMatch create = new CreateMatch(request, response);
+				}
+				case "create":{
+					//방 생성화면에서 생성하기(확인버튼) 클릭했을 때
+					//전달된 값을 확인하고 db에 입력
+					//db입력 후 error없다면 result:success받으면 게시판 화면 보여주기
+						String m_name = request.getParameter("m_name");
+						String id = (String) request.getSession().getAttribute("id"); //id는 세션에서 가져옴
+						String m_date = request.getParameter("m_date");
+						Integer m_number = new Integer(Integer.parseInt(request.getParameter("m_number")));
+						Integer c_number = new Integer(1);
+						Integer is_set = new Integer(0);
+						String detail = request.getParameter("detail");
+						Integer team = new Integer(Integer.parseInt(request.getParameter("team")));
+						String event = request.getParameter("event");
+						
+						System.out.println(m_name + id + m_date + event);
+						
+						CreateMatch create = new CreateMatch();
+						create.setParams(m_name, id, m_date, m_number, c_number, is_set, detail, team, event);
 						result = create.create();
 						if(result.equals("success")) {
 							log("INSERT 성공");
 							//성공 시 해당 게시판으로 이동
-							response.sendRedirect("cb_Board.jsp?event="+create.getEvent());
-						}
-						else if(result.equals("fail_db")) {
-							log("INSERT 실패");
-							throw new Exception("insert 실패");
+							response.sendRedirect("./board?event="+create.getEvent());
 						}
 						else {
+							
 							log("SV_Match_create******************입력되지 않은 매개변수가 있음.");
+							try {
+								throw new Exception("SV_Match.java : INSERT 실패");
+							} catch (Exception e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 						}
-					} catch (Exception e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+						break;
 					}
-					break;
 				case "join":
 					//방 참가 코드, 알람 - 방장(참가시, 꽉찼을시)
 					//해당 match_info 현재 참가중인 인원 + 1
@@ -81,12 +99,12 @@ public class SV_Match extends HttpServlet {
 						JoinMatch jm = new JoinMatch();
 						String id = request.getParameter("id");
 					
-					jm.setId(id);
-					jm.setDate(date);
-					jm.InsertPMatch(); //p_match 테이블에 insert
-					jm.UpdateMatchInfo();//match_info 테이블의 현재인원수 + 1
-					response.sendRedirect("./match?value=show");
-					break;
+						jm.setId(id);
+						jm.setDate(date);
+						jm.InsertPMatch(); //p_match 테이블에 insert
+						jm.UpdateMatchInfo();//match_info 테이블의 현재인원수 + 1
+						response.sendRedirect("./match?value=show");
+						break;
 					}
 				case "set":
 					//매치 확정

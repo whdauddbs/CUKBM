@@ -1,11 +1,8 @@
-<form method="post" action="">
-				 		
 <%@ page language="java" contentType="text/html; charset=EUC-KR"%>
 <%@taglib prefix="c" uri= "http://java.sun.com/jsp/jstl/core"%>
 <% System.out.println("게시판 세션 id: "+session.getAttribute("id")); %>
 
 <!DOCTYPE HTML>
-
 <html>
 <head>
    <meta charset="EUC-KR">
@@ -19,7 +16,6 @@
             	 <center>
                    <a href=""><b><input type=button value="팀" class="randombutton"></b></a>
                    <a href=""><b><input type=button value="개인" class="randombutton"></b></a>
-                 
                    <c:if test="${empty sessionScope.id}">
                       <%
                       System.out.println(request.getRequestURI());
@@ -29,11 +25,12 @@
                       <a href="./login_page"><b><input TYPE="button" value="방 생성" class="randombutton" src="./resources/newroom.PNG"></b></a>
                    </c:if>
                    <c:if test="${not empty sessionScope.id}">
-                      <a href=""><b><input TYPE="button" value="랜덤" class="randombutton"></b></a>
+	         <a href=""><b><input TYPE="button" value="랜덤" class="randombutton"></b></a>
                       <a href="./match?value=create_page"><b><input TYPE="button" value="방 생성" class="randombutton"></b></a>
                 
                    </c:if> 
                    </center>
+
           <div class="table-wrapper">
          <table class="fl-table">
 

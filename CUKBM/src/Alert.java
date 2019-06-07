@@ -10,6 +10,8 @@ public class Alert {
 	private ArrayList<String> date = new ArrayList<String>();
 	private ArrayList<String> c_msg = new ArrayList<String>();
 	private ArrayList<String> c_date = new ArrayList<String>();
+	private int msg_cnt = 0;
+	private int c_msg_cnt = 0;
 	
 	public Alert(){}
 	
@@ -25,6 +27,12 @@ public class Alert {
 	public String[] getC_date() {
 		return c_date.toArray(new String[c_date.size()]);
 	};
+	public int getMsgCnt() {
+		return msg_cnt;
+	}
+	public int getC_msgCnt() {
+		return c_msg_cnt;
+	}
 	
 	public String getAlert(String id) {
 		if(id != null) {
@@ -37,19 +45,20 @@ public class Alert {
 			String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss_SSS", Locale.US).format(new Date());
 			
 			try {
-				Class.forName("com.mysql.jdbc.driver");
-				conn = DriverManager.getConnection("jdbc:mysql://locahost:3306/cukbm?serverTimezone=UTC", "root", "root123");
+				Class.forName("com.mysql.jdbc.Driver");
+				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cukbm?serverTimezone=UTC", "root", "root123");
 				if(conn == null) {
 					throw new Exception("데이터베이스 연결 실패");
 				}
 				//확인하지 않은 메시지 SELECT
-				String sql="SELECT * FROM alert WHERE is_checked=?";
+				String sql="SELECT * FROM alert WHERE is_checked=? order by date desc";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, 0);
 				rs = pstmt.executeQuery();
-				if(rs.next()) {
+				while(rs.next()) {
 					msg.add(rs.getString("message"));
 					date.add(rs.getString("date"));
+					msg_cnt++;
 				}
 				pstmt.close();
 				rs.close();
@@ -59,9 +68,10 @@ public class Alert {
 				pstmt.setInt(1, 1);
 				//확인된 메시지 -> c_msg, c_date
 				rs = pstmt.executeQuery();
-				if(rs.next()) {
+				while(rs.next()) {
 					c_msg.add(rs.getString("message"));
 					c_date.add(rs.getString("date"));
+					c_msg_cnt++;
 				}
 				pstmt.close();
 				rs.close();
@@ -71,6 +81,7 @@ public class Alert {
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, 1);
 				pstmt.setString(2, timeStamp);
+				pstmt.executeUpdate();
 				
 				pstmt.close();
 				rs.close();
