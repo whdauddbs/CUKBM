@@ -47,7 +47,7 @@ public class Alert {
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, 0);
 				rs = pstmt.executeQuery();
-				if(rs.next()) {
+				while(rs.next()) {
 					msg.add(rs.getString("message"));
 					date.add(rs.getString("date"));
 				}
@@ -59,7 +59,7 @@ public class Alert {
 				pstmt.setInt(1, 1);
 				//확인된 메시지 -> c_msg, c_date
 				rs = pstmt.executeQuery();
-				if(rs.next()) {
+				while(rs.next()) {
 					c_msg.add(rs.getString("message"));
 					c_date.add(rs.getString("date"));
 				}

@@ -7,7 +7,7 @@
 <body>
 <jsp:include page="cb_MainBar.jsp"></jsp:include>
 <br>
-<form name="create" action="./match?value=create" method="POST">
+<form action="./match?value=create" method="GET">
 <table id="tablestyle" align = "center" cellspacing="0">
 	<tr>
 		<td colspan = "2" height="10"></td>
@@ -20,9 +20,9 @@
 		<td><input type="text" name="m_name" id="inputbox01"></td>
 	</tr>
 	<tr>
-		<th>경기 날짜</th>
-		<td><input type="text" name="m_date" id="inputbox01"></td>
-	</tr>
+      <th>경기 날짜</th>
+      <td><input type="date" name="m_date" id="inputbox01"></td>
+   </tr>
 	<tr>
 		<th>모집 인원</th>
 		<td><input type="text" name="m_number" id="inputbox01"></td>
@@ -30,8 +30,8 @@
 	<tr>
 		<th>팀/개인</th>
 		<td>
-		<input type="radio" name="team" checked="checked" value="팀" />팀
-		<input type="radio" name="team" checked="checked" value="개인" />개인
+		<input type="radio" name="team" checked="checked" value="1" />팀
+		<input type="radio" name="team" checked="checked" value="0" />개인
 		</td>
 		
 	</tr>
@@ -51,14 +51,15 @@
 	</tr>
 	<tr>
 		<th>상세 정보</th>
-		<td><input type="text" name="detail" id="inputbox01"></td>
+		<td><input type="text" name="detail" id="inputbox01"><input type="hidden" name="value" value="create" /></td>
+		
 	</tr>
 	<tr>
 		<td id="last" colspan = "2" id="inputbox01"><BR><BR><BR></td>
 	</tr>
 </table>
 <br><br>
-<center><input type="button" id="button01" value="생성" onclick="location.href='/CUKBM/cb_ShowGameroom.jsp'"></center>
+<center><input type=submit id="button01" value="생성" onclick="location.href='./match?value=create'"></center>
 </form>
 </body>
 </html>

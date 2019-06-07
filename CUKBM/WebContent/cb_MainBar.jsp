@@ -13,12 +13,15 @@
     <h1><a href="cb_Main.jsp">CUKBM</a></h1>
     <nav class="spot">
         <ul>
-            <li><a href="./mypage">MY PAGE</a></li>
-            <li><a href="./alert" onclick="window.open(this.href, '_blank', 'width=40px,height=100px,toolbars=no,scrollbars=no'); return false;"><img id="bell" src="./resources/bell.PNG" ></a></li>
-            <c:if test="${empty id}">
+            
+            <c:if test="${empty sessionScope.id}">
+            	<li><a href="./login_page">MY PAGE</a></li>
+            	<li><a href="./login_page"><img id="bell" src="./resources/bell.PNG" ></a></li>
             	<li><a href="./login_page">LOGIN</a></li>
             </c:if>
-            <c:if test="${not empty id}">
+            <c:if test="${not empty sessionScope.id}">
+	            <li><a href="./mypage">MY PAGE</a></li>
+	            <li><a href="./alert" onclick="window.open(this.href, '_blank', 'width=40px,height=100px,toolbars=no,scrollbars=no'); return false;"><img id="bell" src="./resources/bell.PNG" ></a></li>
             	<li><a href="./logout">LOGOUT</a></li>
             </c:if>
         </ul>

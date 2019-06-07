@@ -29,13 +29,19 @@ public class SV_Logout extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		String path = request.getParameter("path");
+		String path = (String) request.getAttribute("path");
 		HttpSession session = request.getSession();
 		session.removeAttribute("id");
 		session.invalidate(); //필요한지..?
 		
-		response.sendRedirect("cb_Main.jsp");
-//		response.sendRedirect(path); //해당 uri로 이동
+		if(path==null){
+			response.sendRedirect("cb_Main.jsp");
+		}
+		else {
+			response.sendRedirect(path); //해당 uri로 이동		
+		}
+		
+
 	}
 
 	/**
