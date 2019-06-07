@@ -10,10 +10,13 @@ public class Alert {
 	private ArrayList<String> date = new ArrayList<String>();
 	private ArrayList<String> c_msg = new ArrayList<String>();
 	private ArrayList<String> c_date = new ArrayList<String>();
-	private int msg_cnt = 0;
-	private int c_msg_cnt = 0;
+	private int msg_cnt;
+	private int c_msg_cnt;
 	
-	public Alert(){}
+	public Alert(){
+		msg_cnt = 0;
+		c_msg_cnt = 0;
+	}
 	
 	public String[] getMsg() {
 		return msg.toArray(new String[msg.size()]);

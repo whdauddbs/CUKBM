@@ -26,18 +26,15 @@ public class SV_Board extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String event = request.getParameter("event"); //종목
-		int pageNum=1;
-		//전달된 페이지 번호가 없는경우=> 첫페이지를 보여줌
+		int pageNum=1;	//전달된 페이지 번호가 없는경우=> 첫페이지를 보여줌
+		int select = 2; //전달된  팀/개인 구별이 없는경우 => 모든 분류를 보여줌
+		// 0 : 개인, 1 : 팀, 2 : 개인과 팀
 		if(request.getParameter("pageNum")!=null) {
-
 			pageNum = Integer.parseInt(request.getParameter("pageNum"));
 		}
-		
-//		Board board = readDB(value, page);
-//		request.setAttribute("value", value);
-//		request.setAttribute("page", page);
-//		request.setAttribute("board", board);
-		
+		if(request.getParameter("select")!=null) {
+			select = Integer.parseInt(request.getParameter("select"));
+		}
 		String[] m_name = new String[10]; // 제목
 		String[] id = new String[10]; // 작성자
 		String[] m_date = new String[10]; // 저장일자
@@ -46,10 +43,7 @@ public class SV_Board extends HttpServlet {
 		Integer[] c_number = new Integer[10]; // 현재 인원
 		Integer[] is_set = new Integer[10]; // 매치 확정 여부
 		String[] detail = new String[10]; // 상세 내용
-		
-		
 		Integer[] team = new Integer[10]; // 팀/개인
-//		String[] event = new String[10]; // 종목
 		
 		if(event == null) {
 			//전달된 매개변수가 없는 경우
@@ -65,7 +59,7 @@ public class SV_Board extends HttpServlet {
 			Board board = new Board();
 			board.setEvent(event); //종목 세팅
 			board.setPageNum(pageNum); //페이지 세팅
-			String result = board.readDB(); //DB에서 매치 읽어오기
+			String result = board.readDB(select); //DB에서 매치 읽어오기
 			if(result.equals("success")) {
 				m_name = board.getTitle();
 				id = board.getWriter();

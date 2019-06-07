@@ -21,7 +21,7 @@
             </c:if>
             <c:if test="${not empty sessionScope.id}">
 	            <li><a href="./mypage">MY PAGE</a></li>
-	            <li><a href="./alert" onclick="window.open(this.href, '_blank', 'width=40px,height=100px,toolbars=no,scrollbars=no'); return false;"><img id="bell" src="./resources/bell.PNG" ></a></li>
+	            <li><a href="./alert" onclick="window.open(this.href, '_blank', 'width=250px,height=500px,toolbars=no,scrollbars=no'); return false;"><img id="bell" src="./resources/bell.PNG" ></a></li>
             	<li><a href="./logout">LOGOUT</a></li>
             </c:if>
         </ul>

@@ -15,7 +15,7 @@
             <img src="./resources/LOL.png" onmouseover="this.src='./resources/LOL D.png'" onmouseout="this.src='./resources/LOL.png'">
          </div>
 
-        <div class="img-wrapper img2" onclick="location.href='/CUKBM/board?event=overewatch&page=1'">
+        <div class="img-wrapper img2" onclick="location.href='/CUKBM/board?event=overwatch&page=1'">
             <img src="./resources/OVER.png" onmouseover="this.src='./resources/OVER D.png'" onmouseout="this.src='./resources/OVER.png'">
          </div>
 
