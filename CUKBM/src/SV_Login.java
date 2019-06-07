@@ -51,12 +51,19 @@ public class SV_Login extends HttpServlet {
 				//로그인 성공 시 세션안에 id, login 값 추가
 				HttpSession session = request.getSession();
 				session.setAttribute("id", id);
-				if(path == null)
+				if(path == null) {
 					response.sendRedirect("cb_Main.jsp");
 				//리다이렉트 위치 -> 이동하려던 페이지
-				else
-					System.out.println(path+"&date=" + date);
-					response.sendRedirect(path+"&date=" + date);
+				}
+				else {
+					if(date!=null) {
+						System.out.println(path+"&date=" + date);
+						response.sendRedirect(path+"&date=" + date);
+					}
+					else {
+						response.sendRedirect(path);
+					}
+				}
 			}
 			else {
 				//로그인 실패 시 처리.. alert? or 화면에 글자로?

@@ -37,7 +37,10 @@ public class SV_LoginPage extends HttpServlet {
 			response.sendRedirect("cb_Login.jsp");
 		}
 		else {
-			response.sendRedirect("cb_Login.jsp?path=" + path + "&date=" + date);
+			if(date != null)
+				response.sendRedirect("cb_Login.jsp?path=" + path + "&date=" + date);
+			else 
+				response.sendRedirect("cb_Login.jsp?path=" + path);
 		}
 	}
 
