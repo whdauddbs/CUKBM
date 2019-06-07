@@ -39,7 +39,7 @@
              <c:forEach var="cnt" begin="0" end="9">
                 <c:if test="${not empty m_date[cnt]}">
                     <TR>
-                       <TD><a href="/CUKBM/match?value=show&date=${date[cnt]}">${m_name[cnt]}</a></TD>
+                       <TD><a id="b-a" href="/CUKBM/match?value=show&date=${date[cnt]}">${m_name[cnt]}</a></TD>
                        <TD>${m_date[cnt]}</TD>
                        <TD>${m_number[cnt]}</TD>
                        <c:if test="${team[cnt] == 0}">

@@ -192,7 +192,6 @@ header .spot li{float: left; padding: 0 10px;}
   	text-align: center;
 }
 .fl-table {
-    font-size: 16px;
     font-weight: normal;
     border-collapse: collapse;
     width: 100%;
@@ -202,27 +201,23 @@ header .spot li{float: left; padding: 0 10px;}
     margin-bottom:10px;
     }
 .fl-table th{
-	background :#0D378C;
-	color:white;
-}
-.fl-table td, .fl-table th {
+	font-size: 20px;
     text-align: center;
     height : 40px;	
     padding: 8px;
+	background :#0D378C;
+	color:white;
 }
-
 .fl-table td {
     border-right: 1px solid #f8f8f8;
-    font-size: 12px;
+    font-size: 15px;
     border-bottom: 1px solid #A2A2A3;
+    text-align: center;
+    height : 40px;	
+    padding: 8px;
+    
 }
 
-
-.fl-table th {
-	color: #FFFFFF;
-	font-size: 15px;
-	height : 40px;
-}
 #b-a{
 	color:#0D378C;
 	font-weight:bold;
