@@ -87,17 +87,15 @@ public class ShowMatch {
 			if(conn==null) {
 				throw new Exception("DB연결 실패 : ShowMatch.java");
 			}
-			String sql = "SELECT * from p_match WHERE date=?";
+			String sql = "SELECT * from p_match WHERE date=? and id=?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, date);
-			
+			pstmt.setString(2, id);
+			System.out.println("**********123 "+date + id);
 			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				if(id.equals(rs.getString("id"))) {
-					is_joined = "1";
-				}
+			if(rs.next()) {
+				is_joined = "1";
 			}
-			is_joined = "0";
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

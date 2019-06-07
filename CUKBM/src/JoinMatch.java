@@ -13,6 +13,9 @@ public class JoinMatch {
 	public void setId(String id) {
 		this.id=id;
 	}
+	public void setM_name(String m_name) {
+		this.m_name=m_name;
+	}
 	public void InsertPMatch() {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -20,14 +23,14 @@ public class JoinMatch {
 				
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cukbm?serverTimezone?UTC", "root", "root123");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cukbm?serverTimezone=UTC", "root", "root123");
 			if(conn==null) {
 				throw new Exception("JoinMatch : DB연결 실패");
 			}
 			String sql = "INSERT INTO p_match (m_name, id, date) VALUES (?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, m_name);
-			pstmt.setString(1,  id);
+			pstmt.setString(2,  id);
 			pstmt.setString(3,  date);
 			
 			int result = pstmt.executeUpdate();

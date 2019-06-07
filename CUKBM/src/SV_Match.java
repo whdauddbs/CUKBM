@@ -1,12 +1,6 @@
 
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.*;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -97,13 +91,14 @@ public class SV_Match extends HttpServlet {
 					//필요한 매개변수 : id, date
 					{
 						JoinMatch jm = new JoinMatch();
-						String id = request.getParameter("id");
-					
+						String id = (String)request.getSession().getAttribute("id");
+						date = request.getParameter("date");
+						jm.setM_name(request.getParameter("m_name"));
 						jm.setId(id);
 						jm.setDate(date);
 						jm.InsertPMatch(); //p_match 테이블에 insert
 						jm.UpdateMatchInfo();//match_info 테이블의 현재인원수 + 1
-						response.sendRedirect("./match?value=show");
+						response.sendRedirect("./match?value=show&date="+ date);
 						break;
 					}
 				case "set":
@@ -127,7 +122,7 @@ public class SV_Match extends HttpServlet {
 				case "show":{
 					// 방 보기
 					date = request.getParameter("date");
-					String id = request.getParameter("id");
+					String id = (String)request.getSession().getAttribute("id");
 					
 					if(date!=null) {
 						ShowMatch sm = new ShowMatch();

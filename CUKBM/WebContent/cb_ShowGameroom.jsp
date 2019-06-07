@@ -25,7 +25,7 @@
       <td>${m_date}</td>
    </tr>
    <tr>
-      <th>모집 인원</th>
+      <th>모집 인원<% System.out.println(request.getAttribute("is_joined")); %></th>
       <td>${m_number}</td>
    </tr>
    <tr>
@@ -50,8 +50,13 @@
    </tr>
 </table>
 <!--  여기 수정해야됨 참가된 방은 클릭안되게끔 -->
-<c:if test="${is_joined == null}">
-	<center><input type="button" id="button01" value="참가" onclick="location.href='./match?value=join'"></center>
+<c:if test="${empty sessionScope.id }">
+		<center><input type="button" id="button01" value="참가" onclick="location.href='./login_page'"></center>
+</c:if>
+<c:if test="${not empty sessionScope.id }">
+	<c:if test="${is_joined == null}">
+		<center><input type="button" id="button01" value="참가" onclick="location.href='./match?value=join&date=${date}&m_name=${m_name}'"></center>
+	</c:if>
 </c:if>
 
 </body>
