@@ -1,6 +1,8 @@
 @CHARSET "EUC-KR";
 body{
-	background-color: #efefef
+   background-color: #efefef;
+   margin:0;
 }
 #tablestyleAlarm {width : 100%; height : 100%; background-color: #efefef;}
 #tablestyleAlarm td {height : 100px; border-bottom : 2px solid #000000;}
+#tablestyleAlarm_b {width : 100%; height : 100%; background-color: #ffffce;}
