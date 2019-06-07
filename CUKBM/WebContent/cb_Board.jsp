@@ -15,13 +15,26 @@
 		<div class="container">
 			<div class="outer">
 				<div class="check">
-				 	<form method="post" action="">
 				 		<a href=""><b><input type=button value="评" class="randombutton"></b></a>
 				 		<a href=""><b><input type=button value="俺牢" class="randombutton"></b></a>
-				 		<a href=""><b><input TYPE="IMAGE" value="罚待" class="randombutton" src="./resources/random.PNG"></b></a>
-				 		<a href=""><b><input TYPE="IMAGE" value="规 积己" class="randombutton" src="./resources/newroom.PNG"></b></a>
+				 		
+				 		<c:if test="${empty id}">
+					 		<%
+					 		//System.out.println(request.getRequestURI()); 
+					 		session.setAttribute("path", request.getRequestURI());
+					 		%>
+				 			<form action="./login_page" method=get>
+				 			<b><input TYPE="IMAGE" value="罚待" class="randombutton" src="./resources/random.PNG"></b>
+				 			<b><input TYPE="IMAGE" value="规 积己" class="randombutton" src="./resources/newroom.PNG"></b>
+				 			
+				 			</form>
+				 		</c:if>
+				 		<c:if test="${not empty id}">
+				 			<a href=""><b><input TYPE="IMAGE" value="罚待" class="randombutton" src="./resources/random.PNG"></b></a>
+				 			<a href="./match?value=create_page"><b><input TYPE="IMAGE" value="规 积己" class="randombutton" src="./resources/newroom.PNG"></b></a>
+				 		</c:if>
+				 		
 				 	
-				 	</form>
 				 </div>
 			</div>
 		</div>

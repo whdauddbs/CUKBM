@@ -1,5 +1,6 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
@@ -10,7 +11,7 @@ public class ShowMatch {
 	public ShowMatch() {}
 	
 	private String date;
-	private String m_name, id, m_date, detail, event;
+	private String m_name, id, m_date, detail, event, is_joined;
 	private Integer m_number, c_number, is_set, team;
 	
 	public void setDate(String date) { this.date=date; }
@@ -25,6 +26,7 @@ public class ShowMatch {
 	public String getDetail() { return this.detail; }
 	public Integer getTeam() { return this.team; }
 	public String getEvent() { return this.event; }
+	public String getIs_joined() {return this.is_joined; }
 	
 	public String readDB() {
 
@@ -54,7 +56,6 @@ public class ShowMatch {
 	        	detail = rs.getString("detail");
 	        	team = new Integer(rs.getInt("team"));
 	        	event = rs.getString("event");
-	        	
 	        	System.out.println("디비검색결과 확인 :: showMatch.java :"+m_name);
 	        }
 	        
@@ -73,6 +74,40 @@ public class ShowMatch {
             if ( stmt != null ) try{stmt.close();}catch(Exception e){}
             if ( conn != null ) try{conn.close();}catch(Exception e){}
 	    }
+	}
+	public void comparePMatch(String id) {
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cukbm?serverTimezone=UTC", "root", "root123");
+			if(conn==null) {
+				throw new Exception("DB연결 실패 : ShowMatch.java");
+			}
+			String sql = "SELECT * from p_match WHERE date=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, date);
+			
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				if(id.equals(rs.getString("id"))) {
+					is_joined = "1";
+				}
+			}
+			is_joined = "0";
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			if ( rs != null ) try{rs.close();}catch(Exception e){}
+            if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
+            if ( conn != null ) try{conn.close();}catch(Exception e){}
+		}
 	}
 	
 }

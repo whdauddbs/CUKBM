@@ -7,7 +7,7 @@
 <body>
 <jsp:include page="cb_MainBar.jsp"></jsp:include>
 <br>
-<form name="create" action="SV_Match" method="POST">
+<form name="create" action="./match?value=create" method="POST">
 <table id="tablestyle" align = "center" cellspacing="0">
 	<tr>
 		<td colspan = "2" height="10"></td>

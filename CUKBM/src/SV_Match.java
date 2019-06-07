@@ -43,7 +43,7 @@ public class SV_Match extends HttpServlet {
 			//전달된 매개변수가 없는 경우
 			log("****************event : null value");
 		}
-		else {
+		else { 
 			//event의 값에 해당하는 view로 연결
 			switch (value) {
 				case "create_page" :
@@ -77,21 +77,26 @@ public class SV_Match extends HttpServlet {
 					//p_match에 참가한 사람 정보 추가
 					
 					//필요한 매개변수 : id, date
-					JoinMatch jm = new JoinMatch();
-					String id = request.getParameter("id");
+					{
+						JoinMatch jm = new JoinMatch();
+						String id = request.getParameter("id");
+					
 					jm.setId(id);
 					jm.setDate(date);
 					jm.InsertPMatch(); //p_match 테이블에 insert
 					jm.UpdateMatchInfo();//match_info 테이블의 현재인원수 + 1
-					response.sendRedirect("cb_ShowGameroom.jsp");
+					response.sendRedirect("./match?value=show");
 					break;
+					}
 				case "set":
 					//매치 확정
-					date = request.getParameter("date");
-					SetMatch setMatch = new SetMatch();
-					setMatch.changeSet(date);
-					
-					break;
+						{
+						date = request.getParameter("date");
+						SetMatch setMatch = new SetMatch();
+						setMatch.changeSet(date);
+						
+						break;
+						}
 				case "random":{
 					//랜덤 입장 코드
 					RandomMatch rm = new RandomMatch();
@@ -104,10 +109,15 @@ public class SV_Match extends HttpServlet {
 				case "show":{
 					// 방 보기
 					date = request.getParameter("date");
+					String id = request.getParameter("id");
+					
 					if(date!=null) {
 						ShowMatch sm = new ShowMatch();
 						sm.setDate(date); //검색할 매치의 날짜 설정
 						result = sm.readDB(); //해당 값으로 DB에서 읽음
+						if(id!=null) {
+							sm.comparePMatch(id);
+						}
 						if(result.equals("success")) {
 							request.setAttribute("m_name", sm.getM_name());
 							request.setAttribute("id", sm.getId());
@@ -119,6 +129,7 @@ public class SV_Match extends HttpServlet {
 							request.setAttribute("detail", sm.getDetail());
 							request.setAttribute("team", sm.getTeam());
 							request.setAttribute("event", sm.getEvent());
+							request.setAttribute("is_joined", sm.getIs_joined());
 							
 							RequestDispatcher dispatch = request.getRequestDispatcher("cb_ShowGameroom.jsp");
 							dispatch.forward(request, response);

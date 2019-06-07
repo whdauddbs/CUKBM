@@ -27,12 +27,12 @@ public class SV_MyPage extends HttpServlet {
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+	 */ 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		
-		if(session.getAttribute("login")!=null) {
+		if(session.getAttribute("id")!=null) {
 			//로그인이 되어 있을 때
 			String id = (String) session.getAttribute("id");
 			
@@ -47,15 +47,18 @@ public class SV_MyPage extends HttpServlet {
 			String team = mp.getTeam();
 			String kakao_id = mp.getKakaoId();
 			String[] match_name = mp.getMatchName();
-			String[] match_date = mp.getMatchDate();
+			String[] match_date = mp.getMatchDate(); //이 date는 매치를 등록한 시간임.
 			
 			//위에 값들을 view에 전달
 			request.setAttribute("name", name);
-			request.setAttribute("pw", pw);
+//			request.setAttribute("pw", pw);
 			request.setAttribute("team", team);
 			request.setAttribute("kakao_id", kakao_id);
 			request.setAttribute("match_name", match_name);
 			request.setAttribute("match_date", match_date);
+			if(match_name!=null) {
+				request.setAttribute("count",  match_name.length);
+			}
 			RequestDispatcher rd = request.getRequestDispatcher("cb_MyPage.jsp");
             rd.forward(request, response);
 		}

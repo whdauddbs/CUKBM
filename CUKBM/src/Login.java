@@ -17,12 +17,12 @@ public class Login {
 		Connection conn;
 		Statement stmt;
 		
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
+		try { 
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cukbm?serverTimezone=UTC", "root", "root123");
 			if (conn == null) {
 				throw new Exception("데이터베이스에 연결할 수 없습니다.");
-			}
+			} 
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM user_info WHERE id='"+id+"';"); // 쿼리문 작성
 			if(!rs.next()) {
@@ -34,7 +34,7 @@ public class Login {
 			
 			//id, pw 일치여부 확인 후 일치하면 success, 일치하지 않으면 fail 리턴
 			if(DB_id!=null) {
-				if(DB_pw==pw) {
+				if(DB_pw.equals(pw)) {
 					return "success";
 				}
 				else {

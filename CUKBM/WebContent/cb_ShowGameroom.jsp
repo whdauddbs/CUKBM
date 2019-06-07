@@ -6,37 +6,53 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<body>
 <jsp:include page="cb_MainBar.jsp"></jsp:include>
-	<h2>매치 정보</h2>
-	<div class="sg-container">
-  		<div class="sg-outer">
-  			<h3 id="sg-title"> ${m_name}</h3>
-  			<span class="sg-top">
-  				<span> ${id}</span>
-  				<span>
-  					<c:if test="${team==0}">
-  						개인 모집
-  					</c:if>
-  					<c:if test="${team==1}">
-  						팀 모집
-  					</c:if>
-  				</span>
-  				<span>
-  					<c:if test="${is_set==1}">
-  						게임 확정
-  					</c:if>
-  				</span>
-  				<span id="sg-d"> ${date}</span>
-  			</span>
-  			<hr>
-		  	<ul>
-		      <li> · 경기날짜: ${m_date}</li>
-		      <li> · 현재 인원: ${c_number}</li>
-		      <li> · 모집 인원: ${m_number}</li>
-		    </ul>
-		    <hr>
-		    <p>${detail}</p>
-		</div>
-	</div>
+<br>
+<table id="tablestyle" align = "center" cellspacing="0">
+   <tr>
+      <td colspan = "2" height="10"></td>
+   </tr>
+   <tr>
+      <td id="title" colspan = "2">방 정보</td>
+   </tr>
+   <tr>
+      <th width=17%>방 제목</th>
+      <td>${m_name}</td>
+   </tr>
+   <tr>
+      <th>경기 날짜</th>
+      <td>${m_date}</td>
+   </tr>
+   <tr>
+      <th>모집 인원</th>
+      <td>${m_number}</td>
+   </tr>
+   <tr>
+      <th>팀/개인</th>
+      <td><c:if test="${team==0}">
+                    개인 모집
+                 </c:if>
+                 <c:if test="${team==1}">
+                    팀 모집
+                 </c:if></td>
+   </tr>
+   <tr>
+      <th>종목</th>
+      <td>${event}</td>
+   </tr>
+   <tr>
+      <th>상세 정보</th>
+      <td>${detail}</td>
+   </tr>
+   <tr>
+      <td id="last" colspan="2"> </td>
+   </tr>
+</table>
+<!--  여기 수정해야됨 참가된 방은 클릭안되게끔 -->
+<c:if test="${is_joined == null}">
+	<center><input type="button" id="button01" value="참가" onclick="location.href='./match?value=join'"></center>
+</c:if>
+
 </body>
 </html>

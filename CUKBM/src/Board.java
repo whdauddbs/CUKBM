@@ -29,41 +29,6 @@ public class Board {
     	this.value = event;
     }
     
-//    public void setTitle(int index, String title) {
-//         this.m_name.add(index, title);
-//    }
-//    public void setWriter(int index, String writer) {
-//         this.id.add(index, writer);
-//    }
-//    public void setDate(int index, String date) {
-//         this.date.add(index, date);
-//    }
-//    public void setm_date(int index, String mDate) {
-//        this.m_date.add(index, mDate);
-//   }
-//    public void setMNumber(int index,  int mNumber) {
-//        this.m_number.add(index, mNumber);
-//   }
-//    public void setCurrentNumber(int index, int currentNumber) {
-//        this.currentNumberList.add(index, currentNumber);
-//   }
-//    public void setIsSet(int index, Integer isSet) {
-//        this.is_set.add(index, isSet);
-//   }
-//    public void setDetail(int index, String detail) {
-//        this.detail.add(index, detail);
-//   }
-//    public void setIsTeam(int index, Integer isTeam) {
-//        this.team.add(index, isTeam);
-//   }
-//    public void setEvent(int index, String event) {
-//        this.event.add(index, event);
-//   }
-//    public void setDataCnt(int num) {
-//        this.dataCnt = num;
-//   }
-    
-    
     public String[] getTitle() {
          return m_name.toArray(new String[m_name.size()]);
     }
