@@ -1,13 +1,16 @@
-a{text-decoration: none;}
-a:link{color:white;}
-a:visited{color:white; }
-a:hover{color:white;}
-a:active{color:white;}
-li{list-style:none;}
 
-*{
-	margin:0;
-}
+a{text-decoration:none;}
+
+li a:link{color:white;}
+li a:visited{color:white; }
+li a:hover{color:white;}
+li a:active{color:white;}
+li{list-style:none;}
+h1 a:link{color:white;}
+h1 a:visited{color:white; }
+h1 a:hover{color:white;}
+h1 a:active{color:white;}
+
 header {
     background-color:#0D378C;
     padding: 35px 40px;
@@ -189,18 +192,23 @@ header .spot li{float: left; padding: 0 10px;}
   	text-align: center;
 }
 .fl-table {
-    font-size: 12px;
+    font-size: 16px;
     font-weight: normal;
     border-collapse: collapse;
     width: 100%;
     max-width: 100%;
     white-space: nowrap;
     background-color: white;
+    margin-bottom:10px;
     }
+.fl-table th{
+	background :#0D378C;
+	color:white;
+}
 .fl-table td, .fl-table th {
     text-align: center;
+    height : 40px;	
     padding: 8px;
-    border-top: 1px solid #838485;
 }
 
 .fl-table td {
@@ -208,11 +216,16 @@ header .spot li{float: left; padding: 0 10px;}
     font-size: 12px;
     border-bottom: 1px solid #A2A2A3;
 }
-}
+
 
 .fl-table th {
+	color: #FFFFFF;
 	font-size: 15px;
-    color: #000000;
+	height : 40px;
+}
+#b-a{
+	color:#0D378C;
+	font-weight:bold;
 }
 .container {
   width: 70%;
@@ -226,18 +239,15 @@ header .spot li{float: left; padding: 0 10px;}
   margin:auto;
  }
 
-.check{
-	display:inline;
-	}
 .randombutton {
-  border: 1px solid #ffffff;
+  border: 1px solid #8080c0;
   color: #004040;
   background-color:#ffffff;
   font-size:20px;
   border-radius:5px;
-  margin:10px;
-  width: 20%;
-  height:100%; 
+  margin:20px;
+  width: 100px;
+  height:50px; 
 }
 #sg-a:link{color:black;}
 #sg-a:visited{color:black; }
@@ -274,7 +284,7 @@ header .spot li{float: left; padding: 0 10px;}
 }
 
 #last{background : #efefef; width : 300px; height : 50px;}
-#title{height : 50px; text-align:center; font-weight: bold; font-size : 1.2em; background : linear-gradient(to bottom,white,#eeeeee);}
+#title{height : 50px; text-align:center; font-weight: bold; font-size:15px; background : linear-gradient(to bottom,white,#eeeeee);}
 #captionstyle {text-align:left; border-bottom : 1px solid #efefef;}
 #tablestyle {width : 90%; height : 70%; border-bottom : 1px solid #efefef;}
 #tablestyle td {border-bottom : 1px solid #efefef;}
