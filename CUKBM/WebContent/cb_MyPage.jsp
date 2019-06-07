@@ -10,12 +10,11 @@
 <jsp:include page="cb_MainBar.jsp"></jsp:include>
 <br>
 <table id="tablestyle" align = "center" cellspacing="0">
-	<caption id="captionstyle"><b>회원정보</b></caption>
 	<tr>
 		<td colspan = "5" height="10"></td>
 	</tr>
 	<tr>
-		<td id="title" colspan = "10">기본 정보</td>
+		<td id="title" colspan = "10">회원 정보</td>
 	</tr>
 	<tr>
 		<th width=17%>이름</th>
