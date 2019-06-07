@@ -18,7 +18,8 @@ public class Board {
     
     private String value;
     private int pageNum;
-    
+    private int board_cnt;
+        
     public Board() {}
 
     
@@ -59,6 +60,47 @@ public class Board {
     public String[] getEvent() {
         return event.toArray(new String[event.size()]);
     }
+    public int getBoardCnt() {
+    	return board_cnt;
+    }
+    
+    public void countDB(int select) {
+    	Connection conn = null;
+        PreparedStatement pstmt = null;
+        ResultSet rs = null;
+        String sql;
+        try {
+	    	Class.forName("com.mysql.jdbc.Driver");
+	        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cukbm?serverTimezone=UTC","root","root123");
+	        if (conn == null)
+	        	throw new Exception("데이터베이스에 연결할 수 없습니다.");
+	        if(select==2) {
+		        sql = "select count(*) from match_info where event=?;";
+		        pstmt = conn.prepareStatement(sql);
+		        pstmt.setString(1,value);
+		        rs = pstmt.executeQuery();
+		        rs.next();
+		        board_cnt = rs.getInt("count(*)"); 
+	        }
+	        else {
+	        	sql = "select count(*) from match_info where event=? and team=?;";
+		        pstmt = conn.prepareStatement(sql);
+		        pstmt.setString(1,value);
+		        pstmt.setInt(2, select);
+		        rs = pstmt.executeQuery();
+		        rs.next();
+		        board_cnt = rs.getInt("count(*)"); 
+	        }
+        }
+        catch (Exception e) {
+        	System.out.println("실패 :"+e.getMessage());
+        }
+        finally {
+        	if ( rs != null ) try{rs.close();}catch(Exception e){}
+            if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
+            if ( conn != null ) try{conn.close();}catch(Exception e){}
+        }
+    }
     
     public String readDB(int select) {
     	Connection conn = null;
@@ -71,11 +113,11 @@ public class Board {
 	        if (conn == null)
 	        	throw new Exception("데이터베이스에 연결할 수 없습니다.");
 	        if(select == 2) {
-	        sql = "select * from match_info where event=? order by date desc Limit ?,?";
-	        pstmt = conn.prepareStatement(sql);
-	        pstmt.setString(1,  value);
-	        pstmt.setInt(2, (pageNum-1)*10);
-	        pstmt.setInt(3, pageNum*10);
+		        sql = "select * from match_info where event=? order by date desc Limit ?,?";
+		        pstmt = conn.prepareStatement(sql);
+		        pstmt.setString(1,  value);
+		        pstmt.setInt(2, (pageNum-1)*10);
+		        pstmt.setInt(3, 10);
 	        }
 	        else {
 	        	sql = "select * from match_info where event=? and team=? order by date desc Limit ?,?";
@@ -83,10 +125,9 @@ public class Board {
 		        pstmt.setString(1,  value);
 		        pstmt.setInt(2, select);
 		        pstmt.setInt(3, (pageNum-1)*10);
-		        pstmt.setInt(4, pageNum*10);
+		        pstmt.setInt(4, 10);
 	        }
 	        rs = pstmt.executeQuery();
-	        
 	        while (rs.next()) {
             	m_name.add(rs.getString("m_name"));
             	id.add(rs.getString("id"));

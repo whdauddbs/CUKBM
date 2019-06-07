@@ -44,6 +44,7 @@ public class SV_Board extends HttpServlet {
 		Integer[] is_set = new Integer[10]; // 매치 확정 여부
 		String[] detail = new String[10]; // 상세 내용
 		Integer[] team = new Integer[10]; // 팀/개인
+		int board_cnt;
 		
 		if(event == null) {
 			//전달된 매개변수가 없는 경우
@@ -60,6 +61,7 @@ public class SV_Board extends HttpServlet {
 			board.setEvent(event); //종목 세팅
 			board.setPageNum(pageNum); //페이지 세팅
 			String result = board.readDB(select); //DB에서 매치 읽어오기
+			board.countDB(select);
 			if(result.equals("success")) {
 				m_name = board.getTitle();
 				id = board.getWriter();
@@ -70,6 +72,7 @@ public class SV_Board extends HttpServlet {
 				is_set = board.getIsSet();
 				detail = board.getDetail();
 				team = board.getIsTeam();
+				board_cnt = board.getBoardCnt();
 //				event = board.getEvent();
 				
 				//읽어온 내용 세팅
@@ -85,6 +88,7 @@ public class SV_Board extends HttpServlet {
 				request.setAttribute("event", event);
 //				페이지 지정
 				request.setAttribute("pageNum", pageNum);
+				request.setAttribute("board_cnt", board_cnt);
 				
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/cb_Board.jsp");
 				dispatcher.forward(request, response);
