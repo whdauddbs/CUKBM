@@ -43,7 +43,7 @@
              <c:forEach var="cnt" begin="${(pageNum-1)*10}" end="${pageNum*10}">
              ${date[cnt]}
                     <TR>
-                       <TD><a href="/CUKBM/match?value=show&date=${date[cnt]}">${m_name[cnt]}</a></TD>
+                       <TD><a id="b-a" href="/CUKBM/match?value=show&date=${date[cnt]}">${m_name[cnt]}</a></TD>
                        <TD>${m_date[cnt]}</TD>
                        <TD>${m_number[cnt]}</TD>
                        <TD>${is_set[cnt]}</TD>
