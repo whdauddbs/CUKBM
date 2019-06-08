@@ -29,13 +29,12 @@
                    <a href="/CUKBM/board?event=${event}&pageNum=1&select=0"><b><input type=button value="°³ÀÎ" class="randombutton"></b></a>
                    
                    <c:if test="${empty sessionScope.id}">
-                      <a href="./login_page"><b><input TYPE="button" value="·£´ý" class="randombutton" src="./resources/random.PNG"></b></a>
+                      <a href="./login_page?path=<%=path%>"><b><input TYPE="button" value="·£´ý" class="randombutton" src="./resources/random.PNG"></b></a>
                       <a href="./login_page?path=<%=path%>"><b><input TYPE="button" value="¹æ »ý¼º" class="randombutton" src="./resources/newroom.PNG"></b></a>
                    </c:if>
                    <c:if test="${not empty sessionScope.id}">
-                      <a href=""><b><input TYPE="IMAGE" value="·£´ý" class="randombutton" src="./resources/random.PNG"></b></a>
+                      <a href="./match?value=random&event=${event}"><b><input TYPE="IMAGE" value="·£´ý" class="randombutton" src="./resources/random.PNG"></b></a>
                       <a href="./match?value=create_page"><b><input TYPE="IMAGE" value="¹æ »ý¼º" class="randombutton" src="./resources/newroom.PNG"></b></a>
-                
                    </c:if> 
           <div class="table-wrapper">
          <table class="fl-table">

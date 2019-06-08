@@ -2,7 +2,7 @@ import java.sql.*;
 
 public class RandomMatch {
 
-	private String m_name, id, m_date, detail, team, event;
+	private String m_name, id, m_date, date, detail, team, event;
 	private int m_number, c_number, is_set;
 	public RandomMatch(){
 		
@@ -16,6 +16,9 @@ public class RandomMatch {
 	public String getM_date() {
 		return this.m_date;
 	};
+	public String getDate() {
+		return this.date;
+	}
 	public String getDetail() {
 		return this.detail;
 	};
@@ -59,6 +62,7 @@ public class RandomMatch {
 				m_name = rs.getString("m_name");
 				id = rs.getString("id");
 				m_date = rs.getString("m_date");
+				date = rs.getString("date");
 				m_number = rs.getInt("m_number");
 				c_number = rs.getInt("c_number");
 				is_set = rs.getInt("is_set");

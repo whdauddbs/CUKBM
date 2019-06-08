@@ -114,8 +114,13 @@ public class SV_Match extends HttpServlet {
 					//랜덤 입장 코드
 					RandomMatch rm = new RandomMatch();
 					result = rm.getRandomMatch();
+					String event = request.getParameter("event"); //랜덤으로 참가할 곳 없을 때 게시판으로 보내기위해 사용함.
 					if(result.equals("success")) {
-						response.sendRedirect("cb_ShowGameroom.jsp");
+						response.sendRedirect("./match?value=show&date="+rm.getDate());
+					}
+					else {
+						//랜덤 참가할 방이 없는 경우
+						response.sendRedirect("./board?event="+event);
 					}
 					break;
 				}
