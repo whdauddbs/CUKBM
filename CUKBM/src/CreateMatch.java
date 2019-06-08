@@ -40,7 +40,7 @@ public class CreateMatch {
 			ResultSet rs=null;
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
-				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cukbm?serverTimezone=UTC", "root", "root123");
+				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cukbm?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC","root","root123");
 				if(conn == null) {
 					throw new Exception("db연결 불가");
 				}
@@ -57,6 +57,16 @@ public class CreateMatch {
 				pstmt.setString(8, detail);//detail
 				pstmt.setInt(9, team);//team
 				pstmt.setString(10, event);//event
+				// insert 실행
+				pstmt.executeUpdate();
+				pstmt.close();
+				
+				sql = "INSERT INTO p_match (m_name, id, date) VALUES(?, ?, ?)";
+				//여기서 입력할 값들을 세팅
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, m_name);//m_name
+				pstmt.setString(2, id);//id
+				pstmt.setString(3, new SimpleDateFormat("yyyyMMdd_HHmmss_SSS", Locale.US).format(new Date()));//date
 
 				// insert 실행
 				pstmt.executeUpdate();

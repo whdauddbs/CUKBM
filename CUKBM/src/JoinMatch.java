@@ -56,11 +56,11 @@ public class JoinMatch {
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-//		ResultSet rs = null;
+		ResultSet rs = null;
 		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cukbm?serverTimezone=UTC", "root", "root123");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cukbm?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC", "root", "root123");
 			if(conn==null) {
 				throw new Exception("JoinMatch : DB연결 실패");
 			}
@@ -69,6 +69,34 @@ public class JoinMatch {
 			pstmt.setString(1,  date);
 			
 			int result = pstmt.executeUpdate();
+			
+			pstmt.close();
+			
+			sql = "select * from match_info where date=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,date);
+			rs = pstmt.executeQuery();
+			rs.next();
+			String c_id = rs.getString("id");
+			Integer c_number = rs.getInt("c_number");
+			Integer m_number = rs.getInt("m_number");
+			pstmt.close();
+			if (c_number==m_number) {
+				sql = "insert into alert values(?,?,?,0)";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1,c_id);
+				pstmt.setString(2,"생성한 방에 참가인원이 모두 찼습니다.");
+				pstmt.setString(3,date);
+				pstmt.executeUpdate();
+			}
+			else {
+				sql = "insert into alert values(?,?,?,0)";
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1,c_id);
+				pstmt.setString(2,"생성한 방에 참가자가 입장하였습니다.");
+				pstmt.setString(3,date);
+				pstmt.executeUpdate();
+			}
 			//  반환값??
 			System.out.println("UPDATE 반환값 :"+result);
 			
@@ -80,7 +108,7 @@ public class JoinMatch {
 			try {
 				if(conn!=null) conn.close();
 				if(pstmt!=null) pstmt.close();
-//				if(rs!=null) rs.close();
+				if(rs!=null) rs.close();
 			}
 			catch(Exception e) {
 				e.printStackTrace();

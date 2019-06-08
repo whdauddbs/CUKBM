@@ -54,9 +54,10 @@ public class Alert {
 					throw new Exception("데이터베이스 연결 실패");
 				}
 				//확인하지 않은 메시지 SELECT
-				String sql="SELECT * FROM alert WHERE is_checked=? order by date desc";
+				String sql="SELECT * FROM alert WHERE is_checked=? and id=? order by date desc";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, 0);
+				pstmt.setString(2, id);
 				rs = pstmt.executeQuery();
 				while(rs.next()) {
 					msg.add(rs.getString("message"));
@@ -69,6 +70,7 @@ public class Alert {
 				//확인한 메시지를 SELECT
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, 1);
+				pstmt.setString(2, id);
 				//확인된 메시지 -> c_msg, c_date
 				rs = pstmt.executeQuery();
 				while(rs.next()) {
@@ -80,10 +82,11 @@ public class Alert {
 				rs.close();
 
 				//현 시간 이전으로 읽지 않은 메시지들을 전부 읽은 메시지로 표시
-				sql="UPDATE alert SET is_checked=? WHERE date<? AND is_checked=0";
+				sql="UPDATE alert SET is_checked=? WHERE date<? AND is_checked=0 AND id=?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setInt(1, 1);
 				pstmt.setString(2, timeStamp);
+				pstmt.setString(3, id);
 				pstmt.executeUpdate();
 				
 				pstmt.close();
