@@ -66,34 +66,46 @@
 </form>
 <script>
 function check(){
-   var str = document.getElementsByClassName('send');
-   var blank_pattern = /^\s+|\s+$/g;
-   for (var i = 0; i < str.length; i++) {
-      if(str[i].value.replace(blank_pattern, '') == ""){
-    	  switch(i){
-    	  case 0:
-    		  alert("방 제목을 입력해주세요.");
-    		  break;
-    	  case 1:
-    		  alert("경기 날짜를 입력해주세요.");
-    		  break;
-    	  case 2:
-    		  alert("모집인원을 입력해주세요.");
-    		  break;
-    	  case 3:
-    		  alert("팀/개인을 입력해주세요.");
-    		  break;
-    	  case 4:
-    		  alert("종목을 입력해주세요.");
-    		  break;
-    	  case 5:
-    		  alert("상세정보를 입력해주세요.");
-    		  break; 
-    	  }
-      }
-   }
+	   var str = document.getElementsByClassName('send');
+	   var blank_pattern = /^\s+|\s+$/g;
+	   for (var i = 0; i < str.length; i++) {
+	      if(str[i].value.replace(blank_pattern, '') == ""){
+	    	  switch(i){
+	    	  case 0:
+	    		  alert("방 제목을 입력해주세요.");
+	    		  return false;
+	    		  break;
+	    	  case 1:
+	    		  alert("경기 날짜를 입력해주세요.");
+	    		  return false;
+	    		  break;
+	    	  case 2:
+	    		  alert("모집인원을 입력해주세요.");
+	    		  return false;
+	    		  break;
+	    		  <!--
+	    	  case 3:
+	    		  alert("팀/개인을 입력해주세요.");
+	    		  return false;
+	    		  break;
+	    	  case 4:
+	    		  alert("종목을 입력해주세요.");
+	    		  return false;
+	    		  break;
+	    		  -->
+	    	  case 5:
+	    		  alert("종목을 입력해주세요.");
+	    		  return false;
+	    		  break; 
+	    	  case 6:
+	    		  alert("상세정보를 입력해주세요.");
+	    		  return false;
+	    		  break;
+	    	  }
+	      }
+	   }
 
-}
+	}
 
 </script>
 </body>
