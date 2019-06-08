@@ -52,7 +52,7 @@ public class JoinMatch {
 		}
 		
 	}
-	public void UpdateMatchInfo() {
+	public void UpdateMatchInfo(String match_info_date) {
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -66,7 +66,7 @@ public class JoinMatch {
 			}
 			String sql ="UPDATE match_info SET c_number=c_number+1 WHERE date=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1,  date);
+			pstmt.setString(1,  match_info_date);
 			
 			int result = pstmt.executeUpdate();
 			
@@ -74,7 +74,7 @@ public class JoinMatch {
 			
 			sql = "select * from match_info where date=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1,date);
+			pstmt.setString(1,match_info_date);
 			rs = pstmt.executeQuery();
 			rs.next();
 			String c_id = rs.getString("id");

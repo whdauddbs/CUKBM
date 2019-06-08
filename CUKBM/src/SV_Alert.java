@@ -40,6 +40,7 @@ public class SV_Alert extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
+		System.out.println("SV_Alert : " + id);
 		Alert alert = new Alert();
 		String result = alert.getAlert(id);
 		int msg_cnt = alert.getMsgCnt();

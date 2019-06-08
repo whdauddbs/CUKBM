@@ -44,6 +44,7 @@ public class CreateMatch {
 				if(conn == null) {
 					throw new Exception("db연결 불가");
 				}
+				System.out.println("Create : " + m_name + detail);
 				String sql = "INSERT INTO match_info (m_name, id, m_date, date, m_number, c_number, is_set, detail, team, event) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 				pstmt = conn.prepareStatement(sql);
 				//여기서 입력할 값들을 세팅

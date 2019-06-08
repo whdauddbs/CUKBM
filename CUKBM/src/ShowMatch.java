@@ -76,7 +76,7 @@ public class ShowMatch {
 	    }
 	}
 	public void comparePMatch(String id) {
-		
+		/*
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -87,23 +87,40 @@ public class ShowMatch {
 			if(conn==null) {
 				throw new Exception("DB연결 실패 : ShowMatch.java");
 			}
-			String sql = "SELECT * from p_match WHERE date=? and id=?";
+			String sql = "SELECT * from p_match WHERE m_name=? and id=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, date);
+			pstmt.setString(1, m_name);
 			pstmt.setString(2, id);
-			System.out.println("**********123 "+date + id);
+			System.out.println("**********123 "+ m_name + id);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				is_joined = "1";
 			}
-			
+			*/
+		Connection conn = null;
+	    Statement stmt = null;
+	    ResultSet rs = null;
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+	    	conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cukbm?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC","root","root123");
+			if(conn==null) {
+				throw new Exception("DB연결 실패 : ShowMatch.java");
+			}
+			stmt = conn.createStatement();
+	        rs = stmt.executeQuery("SELECT * FROM p_match WHERE m_name='" + m_name + "' AND id='" + id + "';");
+	        System.out.println("**********123 "+ m_name + id);
+	        if (rs.next()) {
+	        	is_joined = "1";
+	        }
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		finally {
 			if ( rs != null ) try{rs.close();}catch(Exception e){}
-            if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
+            //if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
+			if ( stmt != null ) try{stmt.close();}catch(Exception e){}
             if ( conn != null ) try{conn.close();}catch(Exception e){}
 		}
 	}

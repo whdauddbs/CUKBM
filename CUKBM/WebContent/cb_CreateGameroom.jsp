@@ -7,7 +7,6 @@
 </head>
 <body>
 <jsp:include page="cb_MainBar.jsp"></jsp:include>
-<%request.setCharacterEncoding("UTF-8"); %>
 <form onsubmit="return check()" action="./match?value=create" method="GET">
 	<table id="tablestyle" align = "center" cellspacing="0">
 	   <tr>
@@ -46,7 +45,7 @@
          <option value='etc'>Sports 기타</option>
          <option value='lol'>리그오브레전드</option>
          <option value='bg'>배틀그라운드</option>
-         <option value='overWatch'>오버워치</option>
+         <option value='overwatch'>오버워치</option>
          <option value='e_etc'>E-Sports 기타</option>
          </select></td>
       </tr>

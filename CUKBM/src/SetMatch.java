@@ -54,7 +54,7 @@ public class SetMatch {
 	        	pstmt = conn.prepareStatement(sql);
 	        	pstmt.setString(1, id.get(i));
 	        	pstmt.setString(2,  "<" + m_name.get(i) + "> 매치가 확정되었습니다.");
-	        	pstmt.setString(3,  timeStamp);
+	        	pstmt.setString(3,  timeStamp + i);
 		        pstmt.executeUpdate();
 	        }
 	        rs.close();

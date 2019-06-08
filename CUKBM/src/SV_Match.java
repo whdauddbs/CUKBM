@@ -1,6 +1,9 @@
 
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -92,13 +95,14 @@ public class SV_Match extends HttpServlet {
 					{
 						JoinMatch jm = new JoinMatch();
 						String id = (String)request.getSession().getAttribute("id");
-						date = request.getParameter("date");
+						String match_info_date = request.getParameter("date"); // 참가한 방의 생성 시간
+						date = new SimpleDateFormat("yyyyMMdd_HHmmss_SSS", Locale.US).format(new Date()); // 참가 버튼을 누른 시간
 						jm.setM_name(request.getParameter("m_name"));
 						jm.setId(id);
-						jm.setDate(date);
+						jm.setDate(date); // 버튼 누른시간 저장
 						jm.InsertPMatch(); //p_match 테이블에 insert
-						jm.UpdateMatchInfo();//match_info 테이블의 현재인원수 + 1
-						response.sendRedirect("./match?value=show&date="+ date);
+						jm.UpdateMatchInfo(match_info_date);//match_info 테이블의 현재인원수 + 1
+						response.sendRedirect("./match?value=show&date="+ match_info_date);
 						break;
 					}
 				case "set":
@@ -149,7 +153,7 @@ public class SV_Match extends HttpServlet {
 							request.setAttribute("team", sm.getTeam());
 							request.setAttribute("event", sm.getEvent());
 							request.setAttribute("is_joined", sm.getIs_joined());
-							
+							System.out.println(sm.getIs_joined());
 							RequestDispatcher dispatch = request.getRequestDispatcher("cb_ShowGameroom.jsp");
 							dispatch.forward(request, response);
 						}
