@@ -66,12 +66,10 @@
         	}
 %>
 <c:if test="${empty sessionScope.id }">
-		<!--<center><input type="button" id="button01" value="참가" onclick="location.href='./login_page?path=<%=path%>'"></center>-->
 		<center><a href="./login_page?path=<%=path%>"><input type="button" id="button01" value="참가"></a></center>
 </c:if>
 <c:if test="${not empty sessionScope.id }">
 	<c:if test="${is_joined == null}">
-		<!--<center><input type="button" id="button01" value="참가" onclick="location.href='./match?value=join&date=${date}&m_name=${m_name}'"></center>-->
 		<center><a href="./match?value=join&date=${date}&m_name=${m_name}"><input type="button" id="button01" value="참가"></a></center>
 	</c:if>
 </c:if>
