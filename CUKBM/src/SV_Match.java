@@ -105,9 +105,10 @@ public class SV_Match extends HttpServlet {
 					//매치 확정
 						{
 						date = request.getParameter("date");
+						System.out.println("SV_Match set 확정 date: "+date);
 						SetMatch setMatch = new SetMatch();
 						setMatch.changeSet(date);
-						
+						response.sendRedirect("./match?value=show&date="+ date);
 						break;
 						}
 				case "random":{

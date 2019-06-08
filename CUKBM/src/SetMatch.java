@@ -1,8 +1,9 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
@@ -15,7 +16,7 @@ public class SetMatch {
 	
 	public void changeSet(String date) throws ServletException { // set 바꾸고, 알람 쿼리 전송
         Connection conn = null;
-        Statement stmt = null;
+        PreparedStatement pstmt = null;
         ResultSet rs = null;
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss_SSS", Locale.US).format(new Date());
 
@@ -24,36 +25,49 @@ public class SetMatch {
 	    	conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cukbm?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC","root","root123");
 	        if (conn == null)
 	        	throw new Exception("데이터베이스에 연결할 수 없습니다.");
-	        stmt = conn.createStatement();
-	        stmt.executeQuery("update match_info set is_set=1 where date = " + date + ";");
-	        rs = stmt.executeQuery("select * from match_info where date = " + date + ";");
-	        if (!rs.next()) {
-	        	rs.close();
-	        	throw new Exception("SetMatch.java : 검색된 값이 없음");
-            }
-	        else {
-		        String m_name = rs.getString("m_name");
-		        rs = stmt.executeQuery("select * from p_match where m_name = " + m_name + ";");
-		        while(true) {
-		        	if (!rs.next()) {
-		            	break;
-		            }
-		        	stmt.executeQuery(String.format("insert into alert(id, message, date, is_checked) values('%s', '%s', '%s', %s;",
-	                        rs.getString("id"), "매치가 확정되었습니다.", timeStamp, 0));
-		        }
-		        rs.close();
-		        stmt.close();
-		        conn.close();
+	        
+	        String sql = "update match_info set is_set=1 where date=?";
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setString(1,  date);
+	        pstmt.executeUpdate();
+	        pstmt.close();
+	        
+	        sql = "SELECT p.m_name, p.id FROM p_match p,match_info m WHERE m.date=? AND p.m_name=m.m_name";
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setString(1,  date);
+	        rs = pstmt.executeQuery();
+	        ArrayList<String> m_name = new ArrayList<>();
+	        ArrayList<String> id = new ArrayList<>();
+	        if(!rs.next()) {
+	        	throw new Exception("검색된 값이 없음");
 	        }
+	        rs.beforeFirst();
+	        while(rs.next()) {
+	        	m_name.add(rs.getString("m_name"));
+	        	id.add(rs.getString("id"));
+	        }
+	        pstmt.close();
+	        rs.close();
+	        
+	        sql = "insert into alert(id, message, date, is_checked) values(?, ?, ?, 0)";
+	        for(int i=0; i<m_name.size() ; i++) {
+	        	pstmt = conn.prepareStatement(sql);
+	        	pstmt.setString(1, id.get(i));
+	        	pstmt.setString(2,  m_name.get(i) + "매치가 확정되었습니다.");
+	        	pstmt.setString(3,  timeStamp);
+		        pstmt.executeUpdate();
+	        }
+	        rs.close();
+	        pstmt.close();
+	        conn.close();
         }
         catch (Exception e) {
         	throw new ServletException(e);
         }
         finally {
         	if ( rs != null ) try{rs.close();}catch(Exception e){}
-            if ( stmt != null ) try{stmt.close();}catch(Exception e){}
+            if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
             if ( conn != null ) try{conn.close();}catch(Exception e){}
         }
-	return;
 	}
 }

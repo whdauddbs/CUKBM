@@ -21,8 +21,16 @@
       <td>${m_name}</td>
    </tr>
    <tr>
+      <th>매치 생성자</th>
+      <td>${requestScope.id}</td>
+   </tr>
+   <tr>
       <th>경기 날짜</th>
       <td>${m_date}</td>
+   </tr>
+   <tr>
+      <th>현재 인원</th>
+      <td>${c_number}</td>
    </tr>
    <tr>
       <th>모집 인원</th>
@@ -48,6 +56,15 @@
       <td>${detail}</td>
    </tr>
    <tr>
+      <th>확정 여부</th>
+	      <c:if test="${is_set eq 1}">
+	      	<td>확정</td>
+	      </c:if>
+    	  <c:if test="${is_set eq 0}">
+	      	<td>미 확정</td>
+	      </c:if>
+   </tr>
+   <tr>
       <td id="last" colspan="2"> </td>
    </tr>
 </table>
@@ -64,20 +81,27 @@
               path = request.getRequestURI().split("CUKBM")[1];
            }
 %>
+<!-- 미 로그인 시-->
 <c:if test="${empty sessionScope.id }">
       <center><a href="./login_page?path=<%=path%>"><input type="button" id="button01" value="참가"></a></center>
 </c:if>
+<!-- 로그인 시-->
 <c:if test="${not empty sessionScope.id }">
+	<!-- 방장이 아닐 때-->
 	<c:if test="${sessionScope.id ne id}">
 	   <c:if test="${is_joined == null}">
 	      <center>
 	         <a href="./match?value=join&date=${date}&m_name=${m_name}"><input type="button" id="button01" value="참가"></a>
 	   </c:if>
    </c:if>
-   <!-- 밑에 c:if 안에 확정버튼 코드를 넣을 것 -->
+   <!-- 방장일 때 확정코드 보이게-->
 	<c:if test="${sessionScope.id eq id}">
-	   <center><a href="!!!!!!!!!!!!!!!!!!!"><input type="button" id="button01" value="확정"></a></center>
+		<!-- 확정이 안된 방만 확정버튼 보이게-->
+		<c:if test="${is_set eq 0}">
+		<center><a href="./match?value=set&date=${date}"><input type="button" id="button01" value="확정"></a></center>
 	      </center>
+		</c:if>
+	   
 	</c:if>
 </c:if>
 

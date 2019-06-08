@@ -43,20 +43,31 @@
                    <TR>
                        <th width=300><b>제목</b></th>
                        <th width=80><b>경기 날짜</b></th>
+                       <th width=70><b>현재 인원</b></th>
                        <th width=70><b>모집 인원</b></th>
                        <th width=70><b>팀/개인</b></th>
+                       <th width=70><b>매치 생성자</b></th>
+                       <th width=70><b>확정 여부</b></th>
                    </TR>
                    <c:forEach var="cnt" begin="0" end="9">
                       <c:if test="${not empty m_date[cnt]}">
                           <TR>
                              <TD><a id="b-a" href="/CUKBM/match?value=show&date=${date[cnt]}">${m_name[cnt]}</a></TD>
                              <TD>${m_date[cnt]}</TD>
+                             <TD>${c_number[cnt]}</TD>
                              <TD>${m_number[cnt]}</TD>
                              <c:if test="${team[cnt] == 0}">
                                    <TD>개인</TD>
                              </c:if>
                              <c:if test="${team[cnt] == 1}">
                                    <TD>팀</TD>
+                             </c:if>
+                             <TD>${id[cnt]}</TD>
+                             <c:if test="${is_set[cnt] == 1}">
+                                   <TD>확정</TD>
+                             </c:if>
+                             <c:if test="${is_set[cnt] == 0}">
+                                   <TD>미 확정</TD>
                              </c:if>
                           </TR>
                       </c:if>
