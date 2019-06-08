@@ -61,7 +61,7 @@
 	</table>
 
 <center>
-	<input type=submit id="button01" value="생성" onclick="location.href='./match?value=create'">
+	<a href="./match?value=create"><input type=submit id="button01" value="생성"></a>
 </center>
 </form>
 <script>

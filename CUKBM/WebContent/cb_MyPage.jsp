@@ -47,36 +47,7 @@
 		<td></td>
 	</tr>
 	</c:forEach>
-	<!--  
-	<tr>
-		<td height="40"><br></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-	</tr>
-	<tr>
-		<td height="40"><br></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-	</tr>
-	<tr>
-		<td height="40"><br></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-	</tr>
-	<tr>
-		<td height="40"><br></td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
-	</tr>
-	-->
+	
 	
 	<tr>
 		<td id="last" colspan = "5"><BR><BR><BR></td>
