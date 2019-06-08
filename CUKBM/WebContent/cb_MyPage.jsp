@@ -38,7 +38,7 @@
 		<th>현재 인원</th>
 		<th>확정 여부</th>
 	</tr>
-	<c:forEach var="i" begin="0" end="${count-1}">
+	<c:forEach var="i" begin="0" end="${count}">
 	<tr>
 		<td height="40">${m_name[i]}</td>
 		<td>${m_date[i]}</td>

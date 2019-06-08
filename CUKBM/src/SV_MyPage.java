@@ -1,6 +1,7 @@
 
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -53,6 +54,7 @@ public class SV_MyPage extends HttpServlet {
 			String[] m_number = mp.getM_number();
 			String[] c_number = mp.getC_number();
 			String[] is_set = mp.getIs_set();
+			int db_count = mp.getDBCountNum();
 			
 			//위에 값들을 view에 전달
 			request.setAttribute("name", name);
@@ -64,10 +66,8 @@ public class SV_MyPage extends HttpServlet {
 			request.setAttribute("m_number", m_number);
 			request.setAttribute("c_number", c_number);
 			request.setAttribute("is_set", is_set);
+			request.setAttribute("count",  db_count);
 			
-			if(m_name!=null) {
-				request.setAttribute("count",  m_name.length);
-			}
 			RequestDispatcher rd = request.getRequestDispatcher("cb_MyPage.jsp");
             rd.forward(request, response);
 		}
