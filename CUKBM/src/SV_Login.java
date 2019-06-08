@@ -59,7 +59,7 @@ public class SV_Login extends HttpServlet {
 				//로그인 성공 시 세션안에 id, login 값 추가
 				HttpSession session = request.getSession();
 				session.setAttribute("id", id);
-				if(path == null) {
+				if(path == null | "null".equals(path) | path=="") {
 					response.sendRedirect("cb_Main.jsp");
 				//리다이렉트 위치 -> 이동하려던 페이지
 				}
@@ -67,7 +67,7 @@ public class SV_Login extends HttpServlet {
 //					RequestDispatcher rd = request.getRequestDispatcher(path);
 //					rd.forward(request, response);
 
-					if(date ==null) {
+					if(date == null | "null".equals(date) | date=="") {
 						RequestDispatcher rd = request.getRequestDispatcher(path);
 						rd.forward(request, response);				
 					}

@@ -89,9 +89,11 @@
 <c:if test="${not empty sessionScope.id }">
 	<!-- 방장이 아닐 때-->
 	<c:if test="${sessionScope.id ne id}">
-	   <c:if test="${is_joined == null}">
+	   <c:if test="${is_joined ne 1}"> <!-- 참가하지 않은 상태-->
+	   		<c:if test="${is_set eq 0}"><!-- 확정되지 않은 상태-->
 	      <center>
 	         <a href="./match?value=join&date=${date}&m_name=${m_name}"><input type="button" id="button01" value="참가"></a>
+	         </c:if>
 	   </c:if>
    </c:if>
    <!-- 방장일 때 확정코드 보이게-->
