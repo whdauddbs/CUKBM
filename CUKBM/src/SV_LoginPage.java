@@ -34,12 +34,12 @@ public class SV_LoginPage extends HttpServlet {
 		String date = request.getParameter("date");
 		System.out.println("SV_LoginPage path: " + path);
 		System.out.println("SV_LoginPage date: " + date);
-		if(path == null || path.equals("") || path.equals("null")) {
+		if(path == null) {
 			
 			response.sendRedirect("cb_Login.jsp");
 		}
 		else {
-			if(date ==null || date.equals("") || date.equals("null")) {
+			if(date ==null) {
 				RequestDispatcher rd = request.getRequestDispatcher("cb_Login.jsp?path="+path);
 				rd.forward(request, response);				
 			}

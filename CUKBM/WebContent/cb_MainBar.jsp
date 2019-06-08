@@ -13,7 +13,7 @@
     <nav class="spot">
         <ul>
         <%	
-        	//System.out.println(request.getRequestURI().split("CUKBM")[1]+"?"+request.getQueryString());
+        	System.out.println(request.getRequestURI().split("CUKBM")[1]+"?"+request.getQueryString());
         	String path="";
         	if(request.getRequestURI().split("CUKBM")[1].equals("/cb_Board.jsp")){
         		path = "/board?"+request.getQueryString();
