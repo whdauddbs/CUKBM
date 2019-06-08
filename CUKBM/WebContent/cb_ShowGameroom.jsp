@@ -51,7 +51,6 @@
       <td id="last" colspan="2"> </td>
    </tr>
 </table>
-<!--  여기 수정해야됨 참가된 방은 클릭안되게끔 -->
 <%   
            System.out.println(request.getRequestURI().split("CUKBM")[1]+"?"+request.getQueryString());
            String path="";

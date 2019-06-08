@@ -1,12 +1,13 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class MyPage {
 	
 	private String name, id, pw, team, kakao_id;
-	private String[] match_name, match_date;
+	private String[] m_name, m_date, m_number, c_number, is_set;
 	public MyPage() {}
 	
 	public void setId(String id){
@@ -27,11 +28,20 @@ public class MyPage {
 	public String getKakaoId() {
 		return kakao_id;
 	}
-	public String[] getMatchName() {
-		return match_name;
+	public String[] getM_Name() {
+		return m_name;
 	}
-	public String[] getMatchDate() {
-		return match_date;
+	public String[] getM_Date() {
+		return m_date;
+	}
+	public String[] getM_number() {
+		return m_number;
+	}
+	public String[] getC_number() {
+		return c_number;
+	}
+	public String[] getIs_set() {
+		return is_set;
 	}
 	public void getInfo() {
 		//user_info 정보 가져오기
@@ -82,7 +92,7 @@ public class MyPage {
 	public void getPMatchList() {
 		//참가중인 매치 가져오기
 		Connection conn = null;
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		try {
@@ -91,16 +101,26 @@ public class MyPage {
 			if(conn == null) {
 				throw new Exception("db 연결 불가");
 			}
-			stmt = conn.createStatement();
-			rs = stmt.executeQuery("SELECT * FROM p_match WHERE id='"+id+"';");
+			String sql = "SELECT p.m_name, m_date, m_number, c_number, is_set FROM p_match p,match_info m WHERE p.id=? AND p.date=m.date";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
 			
-			match_name = new String[20];
-			match_name = new String[20];
-			 
+			rs = pstmt.executeQuery();
+			
+			
+			m_name = new String[10];
+			m_date = new String[10];
+			m_number = new String[10];
+			c_number = new String[10];
+			is_set = new String[10];
+			
 			int i=0;
 			while(rs.next()) {
-				match_name[i] = rs.getString("m_name");
-				match_date[i] = rs.getString("date");
+				m_name[i] = rs.getString("m_name");
+				m_date[i] = rs.getString("m_date");
+				m_number[i] = rs.getString("m_number");
+				c_number[i] = rs.getString("c_number");
+				is_set[i] = rs.getString("is_set");
 				i++;
 			}
 			
@@ -110,7 +130,7 @@ public class MyPage {
 		}
 		finally {
 			if ( rs != null ) try{rs.close();}catch(Exception e){}
-            if ( stmt != null ) try{stmt.close();}catch(Exception e){}
+            if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
             if ( conn != null ) try{conn.close();}catch(Exception e){}
 		}
 	}

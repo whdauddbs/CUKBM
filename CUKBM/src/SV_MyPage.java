@@ -47,18 +47,26 @@ public class SV_MyPage extends HttpServlet {
 			String pw = mp.getPw();
 			String team = mp.getTeam();
 			String kakao_id = mp.getKakaoId();
-			String[] match_name = mp.getMatchName();
-			String[] match_date = mp.getMatchDate(); //이 date는 매치를 등록한 시간임.
+			
+			String[] m_name = mp.getM_Name();
+			String[] m_date = mp.getM_Date(); //이 date는 매치를 등록한 시간임.
+			String[] m_number = mp.getM_number();
+			String[] c_number = mp.getC_number();
+			String[] is_set = mp.getIs_set();
 			
 			//위에 값들을 view에 전달
 			request.setAttribute("name", name);
 //			request.setAttribute("pw", pw);
 			request.setAttribute("team", team);
 			request.setAttribute("kakao_id", kakao_id);
-			request.setAttribute("match_name", match_name);
-			request.setAttribute("match_date", match_date);
-			if(match_name!=null) {
-				request.setAttribute("count",  match_name.length);
+			request.setAttribute("m_name", m_name);
+			request.setAttribute("m_date", m_date);
+			request.setAttribute("m_number", m_number);
+			request.setAttribute("c_number", c_number);
+			request.setAttribute("is_set", is_set);
+			
+			if(m_name!=null) {
+				request.setAttribute("count",  m_name.length);
 			}
 			RequestDispatcher rd = request.getRequestDispatcher("cb_MyPage.jsp");
             rd.forward(request, response);

@@ -38,13 +38,13 @@
 		<th>현재 인원</th>
 		<th>확정 여부</th>
 	</tr>
-	<c:forEach var="i" begin="0" end="${count}">
+	<c:forEach var="i" begin="0" end="${count-1}">
 	<tr>
-		<td height="40">${match_name[i]}</td>
-		<td></td>
-		<td></td>
-		<td></td>
-		<td></td>
+		<td height="40">${m_name[i]}</td>
+		<td>${m_date[i]}</td>
+		<td>${m_number[i]}</td>
+		<td>${c_number[i]}</td>
+		<td>${is_set[i]}</td>
 	</tr>
 	</c:forEach>
 	
