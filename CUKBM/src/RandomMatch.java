@@ -44,8 +44,7 @@ public class RandomMatch {
 				
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cukbm?serverTimezone=UTC", "root", "root123");
-			
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cukbm?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC","root","root123");
 			//확정되지 않은 매치 && 참가 가능한 매치를 가져옴 --> 개인/팀 구분이 필요하면 쿼리문의 조건에 team=0 or 1 추가, 종목 설정하려면 event="" 추가
 			String sql = "SELECT * from match_info WHERE is_set=0 AND c_number<m_number order by rand() limit 1";
 			stmt = conn.createStatement();

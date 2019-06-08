@@ -23,7 +23,7 @@ public class JoinMatch {
 				
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cukbm?serverTimezone=UTC", "root", "root123");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cukbm?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC","root","root123");
 			if(conn==null) {
 				throw new Exception("JoinMatch : DB연결 실패");
 			}

@@ -7,7 +7,7 @@
 </head>
 <body>
 <jsp:include page="cb_MainBar.jsp"></jsp:include>
-
+<%request.setCharacterEncoding("UTF-8"); %>
 <form onsubmit="return check()" action="./match?value=create" method="GET">
 	<table id="tablestyle" align = "center" cellspacing="0">
 	   <tr>
@@ -37,19 +37,19 @@
 	      
 	   </tr>
 	   <tr>
-	      <th>종목</th>
-	      <td><select class="send" name='event' style="height:100%;">
-	      <option value='' selected>--선택--</option>
-	      <option value='basketball'>농구</option>
-	      <option value='soccer'>축구</option>
-	      <option value='talbetennis'>탁구</option>
-	      <option value='sportsOthers'>Sports 기타</option>
-	      <option value='leagueOfLegends'>리그오브레전드</option>
-	      <option value='battleGround'>배틀그라운드</option>
-	      <option value='overWatch'>오버워치</option>
-	      <option value='esportsOthers'>E-Sports 기타</option>
-	      </select></td>
-	   </tr>
+         <th>종목</th>
+         <td><select class="send" name='event' style="height:100%;">
+         <option value='' selected>--선택--</option>
+         <option value='basketball'>농구</option>
+         <option value='soccer'>축구</option>
+         <option value='pingpong'>탁구</option>
+         <option value='etc'>Sports 기타</option>
+         <option value='lol'>리그오브레전드</option>
+         <option value='bg'>배틀그라운드</option>
+         <option value='overWatch'>오버워치</option>
+         <option value='e_etc'>E-Sports 기타</option>
+         </select></td>
+      </tr>
 	   <tr>
 	      <th>상세 정보</th>
 	      <td><input class="send" type="text" name="detail" id="inputbox01"><input type="hidden" name="value" value="create" /></td>

@@ -19,7 +19,7 @@ public class Login {
 		
 		try { 
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cukbm?serverTimezone=UTC", "root", "root123");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cukbm?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC","root","root123");
 			if (conn == null) {
 				throw new Exception("데이터베이스에 연결할 수 없습니다.");
 			} 

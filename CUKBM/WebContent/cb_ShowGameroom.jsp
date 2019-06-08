@@ -31,12 +31,12 @@
    <tr>
       <th>팀/개인</th>
       <td>
-	      <c:if test="${team==0}">
-	                    개인 모집
-	      </c:if>
-	      <c:if test="${team==1}">
-	                    팀 모집
-	      </c:if>
+         <c:if test="${team==0}">
+                       개인 모집
+         </c:if>
+         <c:if test="${team==1}">
+                       팀 모집
+         </c:if>
       </td>
    </tr>
    <tr>
@@ -52,30 +52,35 @@
    </tr>
 </table>
 <!--  여기 수정해야됨 참가된 방은 클릭안되게끔 -->
-<%	
-        	System.out.println(request.getRequestURI().split("CUKBM")[1]+"?"+request.getQueryString());
-        	String path="";
-        	if(request.getRequestURI().split("CUKBM")[1].equals("/cb_Board.jsp")){
-        		path = "/board?"+request.getQueryString();
-        	}
-        	else if(request.getRequestURI().split("CUKBM")[1].equals("/cb_ShowGameroom.jsp")){
-        		path = "/match?"+request.getQueryString();
-        	}
-        	else{
-        		path = request.getRequestURI().split("CUKBM")[1];
-        	}
+<%   
+           System.out.println(request.getRequestURI().split("CUKBM")[1]+"?"+request.getQueryString());
+           String path="";
+           if(request.getRequestURI().split("CUKBM")[1].equals("/cb_Board.jsp")){
+              path = "/board?"+request.getQueryString();
+           }
+           else if(request.getRequestURI().split("CUKBM")[1].equals("/cb_ShowGameroom.jsp")){
+              path = "/match?"+request.getQueryString();
+           }
+           else{
+              path = request.getRequestURI().split("CUKBM")[1];
+           }
 %>
 <c:if test="${empty sessionScope.id }">
-		<center><a href="./login_page?path=<%=path%>"><input type="button" id="button01" value="참가"></a></center>
+      <center><a href="./login_page?path=<%=path%>"><input type="button" id="button01" value="참가"></a></center>
 </c:if>
 <c:if test="${not empty sessionScope.id }">
-	<c:if test="${is_joined == null}">
-		<center><a href="./match?value=join&date=${date}&m_name=${m_name}"><input type="button" id="button01" value="참가"></a></center>
+	<c:if test="${sessionScope.id ne id}">
+	   <c:if test="${is_joined == null}">
+	      <center>
+	         <a href="./match?value=join&date=${date}&m_name=${m_name}"><input type="button" id="button01" value="참가"></a>
+	   </c:if>
+   </c:if>
+   <!-- 밑에 c:if 안에 확정버튼 코드를 넣을 것 -->
+	<c:if test="${sessionScope.id eq id}">
+	   <center><a href="!!!!!!!!!!!!!!!!!!!"><input type="button" id="button01" value="확정"></a></center>
+	      </center>
 	</c:if>
 </c:if>
-<!-- 밑에 c:if 안에 확정버튼 코드를 넣을 것 -->
-<c:if test="${sessionScope.id eq id}">
-	<%System.out.println("확정버튼 보일것***(*(*(*(*()))))"); %>
-</c:if>
+
 </body>
 </html>
