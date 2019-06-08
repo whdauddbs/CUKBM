@@ -96,7 +96,7 @@ public class MyPage {
 			
 			match_name = new String[20];
 			match_name = new String[20];
-			
+			 
 			int i=0;
 			while(rs.next()) {
 				match_name[i] = rs.getString("m_name");

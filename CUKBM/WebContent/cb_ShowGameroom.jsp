@@ -25,17 +25,19 @@
       <td>${m_date}</td>
    </tr>
    <tr>
-      <th>모집 인원<% System.out.println(request.getAttribute("is_joined")); %></th>
+      <th>모집 인원</th>
       <td>${m_number}</td>
    </tr>
    <tr>
       <th>팀/개인</th>
-      <td><c:if test="${team==0}">
-                    개인 모집
-                 </c:if>
-                 <c:if test="${team==1}">
-                    팀 모집
-                 </c:if></td>
+      <td>
+	      <c:if test="${team==0}">
+	                    개인 모집
+	      </c:if>
+	      <c:if test="${team==1}">
+	                    팀 모집
+	      </c:if>
+      </td>
    </tr>
    <tr>
       <th>종목</th>
@@ -50,15 +52,30 @@
    </tr>
 </table>
 <!--  여기 수정해야됨 참가된 방은 클릭안되게끔 -->
-<% String path = "./match?" + request.getQueryString();	%>
+<%	
+        	System.out.println(request.getRequestURI().split("CUKBM")[1]+"?"+request.getQueryString());
+        	String path="";
+        	if(request.getRequestURI().split("CUKBM")[1].equals("/cb_Board.jsp")){
+        		path = "/board?"+request.getQueryString();
+        	}
+        	else if(request.getRequestURI().split("CUKBM")[1].equals("/cb_ShowGameroom.jsp")){
+        		path = "/match?"+request.getQueryString();
+        	}
+        	else{
+        		path = request.getRequestURI().split("CUKBM")[1];
+        	}
+%>
 <c:if test="${empty sessionScope.id }">
-		<center><input type="button" id="button01" value="참가" onclick="location.href='./login_page?path=<%=path%>&date=${date}'"></center>
+		<center><input type="button" id="button01" value="참가" onclick="location.href='./login_page?path=<%=path%>'"></center>
 </c:if>
 <c:if test="${not empty sessionScope.id }">
 	<c:if test="${is_joined == null}">
 		<center><input type="button" id="button01" value="참가" onclick="location.href='./match?value=join&date=${date}&m_name=${m_name}'"></center>
 	</c:if>
 </c:if>
-
+<!-- 밑에 c:if 안에 확정버튼 코드를 넣을 것 -->
+<c:if test="${sessionScope.id eq id}">
+	<%System.out.println("확정버튼 보일것***(*(*(*(*()))))"); %>
+</c:if>
 </body>
 </html>

@@ -1,6 +1,8 @@
 
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,6 +30,7 @@ public class SV_Login extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+//		doPost(request, response);
 	}
 
 	/**
@@ -37,9 +40,14 @@ public class SV_Login extends HttpServlet {
 		// TODO Auto-generated method stub
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
-		String path = request.getParameter("path");
-		String date = request.getParameter("date");//이 서블릿을 요청한 페이지에서 path 값으로 원래 페이지의 path를 넘겨줘야됨.
-		System.out.println("login : " + path +" "+ date);
+		
+		//경로는 path로 받는다. 기타정보를 유지하기위해 requestDispatcher를 사용한다.
+		
+		String path = request.getParameter("path");//이 서블릿을 요청한 페이지에서 path 값으로 원래 페이지의 path를 넘겨줘야됨.
+		String date = request.getParameter("date");
+		
+		
+		System.out.println("SV_Login : path: " + path);
 		if(id!=null && pw!=null) {
 			//전송된 id, pw 가 null이 아닌 경우
 			Login login = new Login();
@@ -56,14 +64,19 @@ public class SV_Login extends HttpServlet {
 				//리다이렉트 위치 -> 이동하려던 페이지
 				}
 				else {
-					if(date!=null) {
-						System.out.println(path+"&date=" + date);
-						response.sendRedirect(path+"&date=" + date);
+//					RequestDispatcher rd = request.getRequestDispatcher(path);
+//					rd.forward(request, response);
+
+					if(date ==null) {
+						RequestDispatcher rd = request.getRequestDispatcher(path);
+						rd.forward(request, response);				
 					}
 					else {
-						response.sendRedirect(path);
+						RequestDispatcher rd = request.getRequestDispatcher(path+"&date="+date);
+						rd.forward(request, response);
 					}
 				}
+				
 			}
 			else {
 				//로그인 실패 시 처리.. alert? or 화면에 글자로?
@@ -72,6 +85,7 @@ public class SV_Login extends HttpServlet {
 		}
 		else {
 			log("**********전달된 id 또는 pw 가 null 입니다.");
+			response.sendRedirect("cb_Login.jsp");
 		}
 		
 	}

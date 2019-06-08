@@ -47,7 +47,7 @@ public class SV_Match extends HttpServlet {
 					response.sendRedirect("cb_CreateGameroom.jsp");
 					break;
 				}
-				case "create":{
+ 				case "create":{
 					//방 생성화면에서 생성하기(확인버튼) 클릭했을 때
 					//전달된 값을 확인하고 db에 입력
 					//db입력 후 error없다면 result:success받으면 게시판 화면 보여주기

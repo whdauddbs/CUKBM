@@ -11,12 +11,26 @@
    <jsp:include page="cb_MainBar.jsp"></jsp:include>
       <div class="container">
          <div class="outer">
+			         <%	
+			        	System.out.println(request.getRequestURI().split("CUKBM")[1]+"?"+request.getQueryString());
+			        	String path="";
+			        	if(request.getRequestURI().split("CUKBM")[1].equals("/cb_Board.jsp")){
+			        		path = "/board?"+request.getQueryString();
+			        	}
+			        	else if(request.getRequestURI().split("CUKBM")[1].equals("/cb_ShowGameroom.jsp")){
+			        		path = "/match?"+request.getQueryString();
+			        	}
+			        	else{
+			        		path = request.getRequestURI().split("CUKBM")[1];
+			        	}
+			        %>
+			        
                    <a href="/CUKBM/board?event=${event}&pageNum=1&select=1"><b><input type=button value="评" class="randombutton"></b></a>
                    <a href="/CUKBM/board?event=${event}&pageNum=1&select=0"><b><input type=button value="俺牢" class="randombutton"></b></a>
                    
                    <c:if test="${empty sessionScope.id}">
                       <a href="./login_page"><b><input TYPE="button" value="罚待" class="randombutton" src="./resources/random.PNG"></b></a>
-                      <a href="./login_page?path=${path}"><b><input TYPE="button" value="规 积己" class="randombutton" src="./resources/newroom.PNG"></b></a>
+                      <a href="./login_page?path=<%=path%>"><b><input TYPE="button" value="规 积己" class="randombutton" src="./resources/newroom.PNG"></b></a>
                    </c:if>
                    <c:if test="${not empty sessionScope.id}">
                       <a href=""><b><input TYPE="IMAGE" value="罚待" class="randombutton" src="./resources/random.PNG"></b></a>

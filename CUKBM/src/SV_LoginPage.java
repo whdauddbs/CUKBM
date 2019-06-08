@@ -32,15 +32,29 @@ public class SV_LoginPage extends HttpServlet {
 		//로그인 페이지로 이동
 		String path = request.getParameter("path");
 		String date = request.getParameter("date");
-		System.out.println("SV_LoginPage : " + path);
+		System.out.println("SV_LoginPage path: " + path);
+		System.out.println("SV_LoginPage date: " + date);
 		if(path == null) {
+			
 			response.sendRedirect("cb_Login.jsp");
 		}
 		else {
-			if(date != null)
-				response.sendRedirect("cb_Login.jsp?path=" + path + "&date=" + date);
-			else 
-				response.sendRedirect("cb_Login.jsp?path=" + path);
+			if(date ==null) {
+				RequestDispatcher rd = request.getRequestDispatcher("cb_Login.jsp?path="+path);
+				rd.forward(request, response);				
+			}
+			else {
+				RequestDispatcher rd = request.getRequestDispatcher("cb_Login.jsp?path="+path+"&date="+date);
+				rd.forward(request, response);
+			}
+			
+			
+//			if(date != null) {
+//				response.sendRedirect("cb_Login.jsp?path=" + path + "&date=" + date);				
+//			}
+//			else {
+//				response.sendRedirect("cb_Login.jsp?path=" + path);
+//			}
 		}
 	}
 

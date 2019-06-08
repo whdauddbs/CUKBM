@@ -31,11 +31,12 @@ public class SV_MyPage extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
+		String path=request.getParameter("path");
 		
 		if(session.getAttribute("id")!=null) {
 			//로그인이 되어 있을 때
 			String id = (String) session.getAttribute("id");
-			
+			System.out.println("SV_Mypage 첫 if문 :세션 id ::"+id);
 			//DB에서 id에 해당하는 내 정보를 가져오게 구현.
 			MyPage mp = new MyPage();
 			mp.setId(id); //아이디 set
@@ -64,11 +65,12 @@ public class SV_MyPage extends HttpServlet {
 		}
 		else {
 			//로그인 안 된 상태일 때
-			RequestDispatcher rd = request.getRequestDispatcher("cb_Login.jsp");
-            rd.forward(request, response);
+//			RequestDispatcher rd = request.getRequestDispatcher("cb_Login.jsp");
+//            rd.forward(request, response);
+			System.out.println("여기로 빠짐::");
 			
-            //둘의 차이..?
-//			response.sendRedirect("cb_Login.html");
+			//로그인 페이지로 이동시키고 로그인 성공 시 다시 마이페이지로 돌아오게 한다.
+			response.sendRedirect("cb_Login.jsp?path="+path);
 		}
 	}
 
