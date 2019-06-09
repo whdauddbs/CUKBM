@@ -25,8 +25,15 @@
 		<td colspan = "4">${kakao_id}</td>
 	</tr>
 	<tr>
-		<th>팀 이름</th>
-		<td colspan = "4">${team}</td>
+		<th>개인/팀</th>
+		
+		<c:if test="${team eq 1}">
+			<td colspan = "4">팀</td>
+		</c:if>
+		<c:if test="${team eq 0}">
+			<td colspan = "4">개인</td>
+		</c:if>
+		
 	</tr>
 	<tr>
 		<td id="title" colspan = "10">참가 중인 방</td>
@@ -44,7 +51,12 @@
 		<td>${m_date[i]}</td>
 		<td>${m_number[i]}</td>
 		<td>${c_number[i]}</td>
-		<td>${is_set[i]}</td>
+		<c:if test="${is_set[i] eq 1}">
+			<td>확정</td>
+		</c:if>
+		<c:if test="${is_set[i] eq 0}">
+			<td>미 확정</td>
+		</c:if>
 	</tr>
 	</c:forEach>
 	

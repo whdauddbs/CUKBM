@@ -32,7 +32,7 @@ public class SetMatch {
 	        pstmt.executeUpdate();
 	        pstmt.close();
 	        
-	        sql = "SELECT p.m_name, p.id FROM p_match p,match_info m WHERE m.date=? AND p.m_name=m.m_name";
+	        sql = "SELECT p.m_name, p.id FROM p_match p,match_info m WHERE m.date=? AND p.date=m.date";
 	        pstmt = conn.prepareStatement(sql);
 	        pstmt.setString(1,  date);
 	        rs = pstmt.executeQuery();
@@ -54,7 +54,7 @@ public class SetMatch {
 	        	pstmt = conn.prepareStatement(sql);
 	        	pstmt.setString(1, id.get(i));
 	        	pstmt.setString(2,  "<" + m_name.get(i) + "> 매치가 확정되었습니다.");
-	        	pstmt.setString(3,  timeStamp + i);
+	        	pstmt.setString(3,  timeStamp);
 		        pstmt.executeUpdate();
 	        }
 	        rs.close();

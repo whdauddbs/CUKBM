@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 public class MyPage {
-	
+	 
 	private String name, id, pw, team, kakao_id;
 	private String[] m_name, m_date, m_number, c_number, is_set;
 	int db_count_num; //db select한거 개수 편하게 세려고만듬.
@@ -54,7 +54,7 @@ public class MyPage {
 		ResultSet rs = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cukbm?serverTimezone=UTC", "root", "root123");
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cukbm?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC","root","root123");
 			if(conn == null) {
 				throw new Exception("db 연결 불가");
 			}

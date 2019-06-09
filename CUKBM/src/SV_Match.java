@@ -95,16 +95,17 @@ public class SV_Match extends HttpServlet {
 					{
 						JoinMatch jm = new JoinMatch();
 						String id = (String)request.getSession().getAttribute("id");
-						String match_info_date = request.getParameter("date"); // 참가한 방의 생성 시간
-						date = new SimpleDateFormat("yyyyMMdd_HHmmss_SSS", Locale.US).format(new Date()); // 참가 버튼을 누른 시간
-						jm.setM_name(request.getParameter("m_name"));
+						date = request.getParameter("date"); // 참가한 방의 생성 시간
+//						String match_info_date = request.getParameter("date"); // 참가한 방의 생성 시간
+//						date = new SimpleDateFormat("yyyyMMdd_HHmmss_SSS", Locale.US).format(new Date()); // 참가 버튼을 누른 시간
+//						jm.setM_name(request.getParameter("m_name"));
 						jm.setId(id);
 						jm.setDate(date); // 버튼 누른시간 저장
 						jm.InsertPMatch(); //p_match 테이블에 insert
-						jm.UpdateMatchInfo(match_info_date);//match_info 테이블의 현재인원수 + 1
-						response.sendRedirect("./match?value=show&date="+ match_info_date);
+						jm.UpdateMatchInfo();//match_info 테이블의 현재인원수 + 1
+						response.sendRedirect("./match?value=show&date="+ date);
 						break;
-					}
+					} 
 				case "set":
 					//매치 확정
 						{

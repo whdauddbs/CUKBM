@@ -1,7 +1,11 @@
 import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 public class JoinMatch {
 	
 	private String date;
+	private String time_stamp = new SimpleDateFormat("yyyyMMdd_HHmmss_SSS", Locale.US).format(new Date()); // 참가 버튼을 누른 시간
 	private String id;
 	private String m_name;
 	
@@ -12,9 +16,6 @@ public class JoinMatch {
 	}
 	public void setId(String id) {
 		this.id=id;
-	}
-	public void setM_name(String m_name) {
-		this.m_name=m_name;
 	}
 	public void InsertPMatch() {
 		Connection conn = null;
@@ -52,7 +53,7 @@ public class JoinMatch {
 		}
 		
 	}
-	public void UpdateMatchInfo(String match_info_date) {
+	public void UpdateMatchInfo() {
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -66,7 +67,7 @@ public class JoinMatch {
 			}
 			String sql ="UPDATE match_info SET c_number=c_number+1 WHERE date=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1,  match_info_date);
+			pstmt.setString(1,  date);
 			
 			int result = pstmt.executeUpdate();
 			
@@ -74,7 +75,7 @@ public class JoinMatch {
 			
 			sql = "select * from match_info where date=?";
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1,match_info_date);
+			pstmt.setString(1,date);
 			rs = pstmt.executeQuery();
 			rs.next();
 			String c_id = rs.getString("id");
@@ -86,7 +87,7 @@ public class JoinMatch {
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1,c_id);
 				pstmt.setString(2,"생성한 방에 참가인원이 모두 찼습니다.");
-				pstmt.setString(3,date);
+				pstmt.setString(3,time_stamp);
 				pstmt.executeUpdate();
 			}
 			else {
@@ -94,7 +95,7 @@ public class JoinMatch {
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1,c_id);
 				pstmt.setString(2,"생성한 방에 참가자가 입장하였습니다.");
-				pstmt.setString(3,date);
+				pstmt.setString(3,time_stamp);
 				pstmt.executeUpdate();
 			}
 			//  반환값??

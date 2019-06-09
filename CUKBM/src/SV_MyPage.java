@@ -67,7 +67,7 @@ public class SV_MyPage extends HttpServlet {
 			request.setAttribute("c_number", c_number);
 			request.setAttribute("is_set", is_set);
 			request.setAttribute("count",  db_count);
-			
+			 
 			RequestDispatcher rd = request.getRequestDispatcher("cb_MyPage.jsp");
             rd.forward(request, response);
 		}
