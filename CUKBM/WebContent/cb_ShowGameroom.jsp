@@ -94,7 +94,9 @@
 %>
 <!-- 미 로그인 시-->
 <c:if test="${empty sessionScope.id }">
+		<c:if test="${is_set eq 0}"><!-- 확정되지 않은 상태-->
       <center><a href="./login_page?path=<%=path%>"><input type="button" id="button01" value="참가"></a></center>
+      </c:if>
 </c:if>
 <!-- 로그인 시-->
 <c:if test="${not empty sessionScope.id }">
