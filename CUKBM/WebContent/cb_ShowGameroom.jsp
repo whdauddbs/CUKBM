@@ -64,6 +64,17 @@
 	      	<td>미 확정</td>
 	      </c:if>
    </tr>
+   <c:if test="${is_set eq 1}"> <!-- 확정된 상태-->
+	   <tr>
+	      <th>참가자 kakao id</th>
+	      	<td>
+		      	<c:forEach var="cnt" begin="0" end="${kakao_id_count}">
+		      		${kakao_id[cnt]}
+		      	</c:forEach>
+	      	</td>
+	   </tr>
+   </c:if>
+   
    <tr>
       <td id="last" colspan="2"> </td>
    </tr>

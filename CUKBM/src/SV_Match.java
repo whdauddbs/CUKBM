@@ -141,7 +141,9 @@ public class SV_Match extends HttpServlet {
 						result = sm.readDB(); //해당 값으로 DB에서 읽음
 						if(id!=null) {
 							sm.comparePMatch(id);
+							
 						}
+						sm.read_KakaoId_DB();
 						if(result.equals("success")) {
 							request.setAttribute("m_name", sm.getM_name());
 							request.setAttribute("id", sm.getId());
@@ -154,12 +156,15 @@ public class SV_Match extends HttpServlet {
 							request.setAttribute("team", sm.getTeam());
 							request.setAttribute("event", sm.getEvent());
 							request.setAttribute("is_joined", sm.getIs_joined());
+							request.setAttribute("kakao_id", sm.getKakaoIdList());
+							request.setAttribute("kakao_id_count", sm.getKakaoIdList().length);
 							System.out.println(sm.getIs_joined());
 							RequestDispatcher dispatch = request.getRequestDispatcher("cb_ShowGameroom.jsp");
 							dispatch.forward(request, response);
 						}
 						else {
 							try {
+								System.out.println(result);
 								throw new Exception("DB검색 실패");
 							} catch (Exception e) {
 								e.printStackTrace();

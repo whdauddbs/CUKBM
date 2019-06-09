@@ -3,6 +3,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 
@@ -13,7 +14,8 @@ public class ShowMatch {
 	private String date;
 	private String m_name, id, m_date, detail, event, is_joined;
 	private Integer m_number, c_number, is_set, team;
-	
+	private ArrayList<String> kakaoId = new ArrayList<String>();
+			
 	public void setDate(String date) { this.date=date; }
 	
 	public String getM_name() { return this.m_name; }
@@ -27,19 +29,22 @@ public class ShowMatch {
 	public Integer getTeam() { return this.team; }
 	public String getEvent() { return this.event; }
 	public String getIs_joined() {return this.is_joined; }
+	public String[] getKakaoIdList() {return kakaoId.toArray(new String[kakaoId.size()]);}
 	
 	public String readDB() {
 
 		Connection conn = null;
-	    Statement stmt = null;
+	    PreparedStatement pstmt = null;
 	    ResultSet rs = null;
 	    try { 
 	    	Class.forName("com.mysql.jdbc.Driver");
 	    	conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cukbm?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC","root","root123");
 	        if (conn == null)
 	        	throw new Exception("데이터베이스에 연결할 수 없습니다.");
-	        stmt = conn.createStatement();
-	        rs = stmt.executeQuery("select * from match_info where date = '" + date + "';");
+	        String sql = "select * from match_info where date =?";
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setString(1,  date);
+	        rs = pstmt.executeQuery();
 	        System.out.println("showmath11 : " + date);
 	        if (!rs.next()) {
 	        	System.out.println("ShowMatch : 검색결과 없음");
@@ -59,7 +64,7 @@ public class ShowMatch {
 	        	System.out.println("디비검색결과 확인 :: showMatch.java :"+m_name);
 	        }
 	        
-	        stmt.close();
+	        pstmt.close();
 	        rs.close();
 	        conn.close();
 	        
@@ -71,9 +76,51 @@ public class ShowMatch {
 	    }
 	    finally {
 	    	if ( rs != null ) try{rs.close();}catch(Exception e){}
-            if ( stmt != null ) try{stmt.close();}catch(Exception e){}
+            if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
             if ( conn != null ) try{conn.close();}catch(Exception e){}
 	    }
+	}
+	public void read_KakaoId_DB() {
+		
+		Connection conn = null;
+	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
+	    String sql;
+	    try { 
+	    	Class.forName("com.mysql.jdbc.Driver");
+	    	conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cukbm?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC","root","root123");
+	        if (conn == null)
+	        	throw new Exception("데이터베이스에 연결할 수 없습니다.");
+	        
+		if(is_set==1) {
+        	//확정된 방이라면 연락처를 뿌려야됨.
+        	sql = "SELECT u.kakao_id FROM user_info u, p_match p WHERE p.id=u.id AND p.date=?";
+        	pstmt = conn.prepareStatement(sql);
+        	pstmt.setString(1, date);
+        	rs = pstmt.executeQuery();
+        	
+        	if(!rs.next()) {
+        		throw new Exception("확정된 방의 아이디 검색 실패 , 검색 date: "+date);
+        	}
+        	rs.beforeFirst();
+        	while(rs.next()) {
+        		kakaoId.add(rs.getString("kakao_id"));
+        	}
+        	
+        }
+        
+        pstmt.close();
+        rs.close();
+	    }
+	    catch (Exception e) {
+	    	System.out.println(e.getMessage());
+	    }
+	    finally {
+	    	if ( rs != null ) try{rs.close();}catch(Exception e){}
+            if ( pstmt != null ) try{pstmt.close();}catch(Exception e){}
+            if ( conn != null ) try{conn.close();}catch(Exception e){}
+	    }
+	    
 	}
 	public void comparePMatch(String id) {
 		
