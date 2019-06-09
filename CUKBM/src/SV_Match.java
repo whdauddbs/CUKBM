@@ -98,7 +98,7 @@ public class SV_Match extends HttpServlet {
 						date = request.getParameter("date"); // 참가한 방의 생성 시간
 //						String match_info_date = request.getParameter("date"); // 참가한 방의 생성 시간
 //						date = new SimpleDateFormat("yyyyMMdd_HHmmss_SSS", Locale.US).format(new Date()); // 참가 버튼을 누른 시간
-//						jm.setM_name(request.getParameter("m_name"));
+						jm.setM_Name(request.getParameter("m_name"));
 						jm.setId(id);
 						jm.setDate(date); // 버튼 누른시간 저장
 						jm.InsertPMatch(); //p_match 테이블에 insert

@@ -38,6 +38,7 @@ public class CreateMatch {
 			Connection conn=null;
 			PreparedStatement pstmt=null;
 			ResultSet rs=null;
+			String time_stamp = new SimpleDateFormat("yyyyMMdd_HHmmss_SSS", Locale.US).format(new Date());
 			try {
 				Class.forName("com.mysql.jdbc.Driver");
 				conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/cukbm?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC","root","root123");
@@ -48,10 +49,11 @@ public class CreateMatch {
 				String sql = "INSERT INTO match_info (m_name, id, m_date, date, m_number, c_number, is_set, detail, team, event) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 				pstmt = conn.prepareStatement(sql);
 				//여기서 입력할 값들을 세팅
+				
 				pstmt.setString(1, m_name);//m_name
 				pstmt.setString(2, id);//id
 				pstmt.setString(3, m_date);//m_date
-				pstmt.setString(4, new SimpleDateFormat("yyyyMMdd_HHmmss_SSS", Locale.US).format(new Date()));
+				pstmt.setString(4, time_stamp);
 				pstmt.setInt(5, m_number);//m_number
 				pstmt.setInt(6, c_number);//c_number
 				pstmt.setInt(7, is_set);//is_set
@@ -67,7 +69,7 @@ public class CreateMatch {
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, m_name);//m_name
 				pstmt.setString(2, id);//id
-				pstmt.setString(3, new SimpleDateFormat("yyyyMMdd_HHmmss_SSS", Locale.US).format(new Date()));//date
+				pstmt.setString(3, time_stamp);//date
 
 				// insert 실행
 				pstmt.executeUpdate();

@@ -11,6 +11,9 @@ public class JoinMatch {
 	
 	public JoinMatch() {}
 	
+	public void setM_Name(String m_name) {
+		this.m_name=m_name;
+	}
 	public void setDate(String date) {
 		this.date=date;
 	}
