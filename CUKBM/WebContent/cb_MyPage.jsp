@@ -45,15 +45,15 @@
 	</tr>
 	<c:forEach var="i" begin="0" end="${count}">
 	<tr>
-		<td height="40">${m_name[i]}</td>
-		<td>${m_date[i]}</td>
-		<td>${m_number[i]}</td>
-		<td>${c_number[i]}</td>
+		<td height="40" id="Mypage_text">${m_name[i]}</td>
+		<td id="Mypage_text">${m_date[i]}</td>
+		<td id="Mypage_text">${m_number[i]}</td>
+		<td id="Mypage_text">${c_number[i]}</td>
 		<c:if test="${is_set[i] eq 1}">
-			<td>확정</td>
+			<td id="Mypage_text">확정</td>
 		</c:if>
 		<c:if test="${is_set[i] eq 0}">
-			<td>미 확정</td>
+			<td id="Mypage_text">미 확정</td>
 		</c:if>
 	</tr>
 	</c:forEach>
