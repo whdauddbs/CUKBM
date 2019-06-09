@@ -57,7 +57,7 @@ public class RandomMatch {
 			//가져온 매치중에서 랜덤으로 하나 선택
 			if(!rs.next()) {
 				//검색된 매치가 없는 경우
-				System.out.println("검색된 랜덤 매치 없음");
+				System.out.println("검색된 랜덤 매치 없음 검색event : "+event);
 				return "fail";
 			}
 			

@@ -118,9 +118,11 @@ public class SV_Match extends HttpServlet {
 						}
 				case "random":{
 					//랜덤 입장 코드
-					RandomMatch rm = new RandomMatch();
-					result = rm.getRandomMatch();
 					String event = request.getParameter("event"); //랜덤으로 참가할 곳 없을 때 게시판으로 보내기위해 사용함.
+					RandomMatch rm = new RandomMatch();
+					rm.setEvent(event);
+					result = rm.getRandomMatch();
+					
 					if(result.equals("success")) {
 						response.sendRedirect("./match?value=show&date="+rm.getDate());
 					}
