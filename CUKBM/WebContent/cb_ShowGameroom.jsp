@@ -65,14 +65,16 @@
 	      </c:if>
    </tr>
    <c:if test="${is_set eq 1}"> <!-- 확정된 상태-->
-	   <tr>
-	      <th>참가자 kakao id</th>
-	      	<td>
-		      	<c:forEach var="cnt" begin="0" end="${kakao_id_count}">
-		      		${kakao_id[cnt]}
-		      	</c:forEach>
-	      	</td>
-	   </tr>
+   		<c:if test="${is_joined eq 1}"> <!-- 참가자일 경우에만 카톡보임-->
+		   <tr>
+		      <th>참가자 kakao id</th>
+		      	<td>
+			      	<c:forEach var="cnt" begin="0" end="${kakao_id_count}">
+			      		${kakao_id[cnt]}
+			      	</c:forEach>
+		      	</td>
+		   </tr>
+	   </c:if>
    </c:if>
    
    <tr>
