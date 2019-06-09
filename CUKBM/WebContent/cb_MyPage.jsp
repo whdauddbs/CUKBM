@@ -25,14 +25,12 @@
 		<td colspan = "4">${kakao_id}</td>
 	</tr>
 	<tr>
-		<th>개인/팀</th>
-		
-		<c:if test="${team eq 1}">
-			<td colspan = "4">팀</td>
-		</c:if>
-		<c:if test="${team eq 0}">
-			<td colspan = "4">개인</td>
-		</c:if>
+		<th>소속 팀</th>
+		<td colspan = "4">
+			<c:if test="${not empty team}">
+				${team}
+			</c:if>
+		</td>
 		
 	</tr>
 	<tr>
