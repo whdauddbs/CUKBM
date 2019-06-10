@@ -111,7 +111,7 @@
 	         </c:if>
 	   </c:if>
 	   <c:if test="${is_joined eq 1}"><!--  참가한 경우 -->
-	   		<a href="./match?value=cancel&date=${date}"><input type="button" id="button01" value="참가취소"></a>
+	   		<center><a href="./match?value=cancel&date=${date}"><input type="button" id="button01" value="참가취소"></a></center>
 	   </c:if>
    </c:if>
    <!-- 방장일 때 확정코드 보이게-->
