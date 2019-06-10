@@ -102,6 +102,12 @@ function check(){
 	    		  break;
 	    	  }
 	      }
+	      else{
+	    	  if(str[2].value < 2){
+	    		  alert("모집인원은 최소 2명 이상이어야 합니다.");
+	    		  return false;
+	    	  }
+	      }
 	   }
 
 	}
