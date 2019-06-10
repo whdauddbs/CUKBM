@@ -175,6 +175,18 @@ public class SV_Match extends HttpServlet {
 						
 					}
 					break;
+					
+					
+				}
+				case "cancel":{
+					
+					date = request.getParameter("date");
+					String id = (String)request.getSession().getAttribute("id");
+					CancelMatch cm = new CancelMatch();
+					cm.setId(id);
+					cm.setDate(date);
+					cm.deleteDB();
+					response.sendRedirect("./match?value=show&date="+ date);
 				}
 				default:
 					break;
