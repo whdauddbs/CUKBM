@@ -20,10 +20,10 @@
  - etc : Tomcat9, mysql, JSTL
  
  ### 팀원
-권현준(tkstka0023) : Backend 담당 
-김여정(who1129) : Frontend 담당
-문영환(sky3085) : Frontend 담당
-윤종명(whdauddbs) : Backend 담당
-정현진(HyeonjinJeong) : 디자인, UI/UX 담당
+ - 권현준(tkstka0023) : Backend 담당
+ - 김여정(who1129) : Frontend 담당
+ - 문영환(sky3085) : Frontend 담당
+ - 윤종명(whdauddbs) : Backend 담당
+ - 정현진(HyeonjinJeong) : 디자인, UI/UX 담당
 
 #jsp, #mysql, #웹 개발, #MVC_패턴_구현
